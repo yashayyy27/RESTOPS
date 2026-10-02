@@ -1,0 +1,11 @@
+{
+  "seed": 42,
+  "start_date": "2024-01-01",
+  "end_date": "2025-12-31",
+  "restaurants": 18,
+  "base_daily_orders": 54,
+  "forecast_horizon": 28,
+  "currency": "AUD",
+  "company": "Southern Table Hospitality",
+  "index_weights": {"revenue": 0.25, "margin": 0.25, "labour": 0.20, "waste": 0.15, "satisfaction": 0.15}
+}

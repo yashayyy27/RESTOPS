@@ -1,0 +1,25 @@
+product_id,product_name,category,menu_price_ex_gst,standard_ingredient_cost
+1,Classic Burger,Mains,22,7.30000000
+2,Chicken Burger,Mains,23,7.50000000
+3,Veggie Burger,Mains,21,6.30000000
+4,Grilled Barramundi,Mains,31,12.80000000
+5,Steak Plate,Mains,35,14.50000000
+6,Chicken Bowl,Mains,24,7.80000000
+7,Pasta Primavera,Mains,23,6.40000000
+8,Fish Tacos,Mains,25,9.20000000
+9,Garden Salad,Salads,17,4.90000000
+10,Chicken Salad,Salads,22,7.10000000
+11,Greek Salad,Salads,19,5.50000000
+12,Chips,Sides,8,1.80000000
+13,Sweet Potato Chips,Sides,10,2.60000000
+14,Garlic Bread,Sides,7,1.50000000
+15,Coleslaw,Sides,6,1.40000000
+16,Flat White,Drinks,5,1.20000000
+17,Lemonade,Drinks,6,1.00000000
+18,Iced Tea,Drinks,6,1.30000000
+19,Sparkling Water,Drinks,5,0.90000000
+20,Fresh Juice,Drinks,8,2.20000000
+21,Chocolate Brownie,Desserts,10,2.60000000
+22,Cheesecake,Desserts,12,3.70000000
+23,Ice Cream,Desserts,8,1.90000000
+24,Seasonal Tart,Desserts,11,3.40000000

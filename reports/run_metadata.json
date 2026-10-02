@@ -1,0 +1,64 @@
+{
+  "configuration": {
+    "seed": 42,
+    "start_date": "2024-01-01",
+    "end_date": "2025-12-31",
+    "restaurants": 18,
+    "base_daily_orders": 54,
+    "forecast_horizon": 28,
+    "currency": "AUD",
+    "company": "Southern Table Hospitality",
+    "index_weights": {
+      "revenue": 0.25,
+      "margin": 0.25,
+      "labour": 0.2,
+      "waste": 0.15,
+      "satisfaction": 0.15
+    }
+  },
+  "python": "3.12.14",
+  "package_versions": {
+    "pandas": "2.3.3",
+    "numpy": "2.2.6",
+    "matplotlib": "3.11.2",
+    "scikit-learn": "1.9.1",
+    "holidays": "0.105",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0"
+  },
+  "elapsed_seconds": 195.48,
+  "notebooks_executed": false,
+  "quality": {
+    "raw_lines_after_dedup": 2111602,
+    "clean_lines": 2105626,
+    "clean_orders": 794925,
+    "quarantined_orders": 2049,
+    "clean_revenue": 36444593.8,
+    "quarantined_revenue": -125469.65,
+    "clean_rows": {
+      "restaurants": 18,
+      "products": 24,
+      "transactions": 2105626,
+      "labour": 90558,
+      "customer_feedback": 59722,
+      "loyalty": 586584,
+      "promotions": 108,
+      "waste": 310377,
+      "targets": 432,
+      "operating_costs": 1296,
+      "delivery": 167034,
+      "calendar": 2193,
+      "manager_assignments": 18
+    }
+  },
+  "forecast": {
+    "selected_model": "Calendar ridge",
+    "selection_metric": "Mean validation MAE across three rolling 28-day folds",
+    "holdout_start": "2025-12-04",
+    "holdout_end": "2025-12-31",
+    "future_start": "2026-01-01",
+    "future_end": "2026-01-28",
+    "forecast_total": 1640024.16,
+    "interval_method": "Per-store 80th percentile absolute validation error (84 errors/store); approximate empirical bands"
+  }
+}

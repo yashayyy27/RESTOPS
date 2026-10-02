@@ -1,0 +1,12 @@
+pandas>=2.2,<3
+numpy>=2.1,<2.3
+matplotlib>=3.9,<4
+scikit-learn>=1.6,<2
+holidays>=0.60,<1
+jupyter>=1.1,<2
+nbformat>=5.10,<6
+nbclient>=0.10,<1
+ipykernel>=6.29,<8
+mistune>=3.1,<4
+streamlit>=1.64,<2
+plotly>=6,<7

@@ -1,0 +1,10 @@
+{
+  "selected_model": "Calendar ridge",
+  "selection_metric": "Mean validation MAE across three rolling 28-day folds",
+  "holdout_start": "2025-12-04",
+  "holdout_end": "2025-12-31",
+  "future_start": "2026-01-01",
+  "future_end": "2026-01-28",
+  "forecast_total": 1640024.16,
+  "interval_method": "Per-store 80th percentile absolute validation error (84 errors/store); approximate empirical bands"
+}

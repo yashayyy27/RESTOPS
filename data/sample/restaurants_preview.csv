@@ -1,0 +1,19 @@
+restaurant_id,restaurant_name,state,location_type,area,timezone,seats,opening_date,open_hour,close_hour
+1,Sydney Central,NSW,CBD,East,Australia/Sydney,90,2021-01-01,11,22
+2,Parramatta,NSW,Shopping centre,East,Australia/Sydney,76,2021-01-01,11,22
+3,Bondi,NSW,Suburban,East,Australia/Sydney,64,2021-01-01,11,22
+4,Newcastle,NSW,Regional,East,Australia/Sydney,70,2021-01-01,11,22
+5,Chatswood,NSW,Shopping centre,East,Australia/Sydney,82,2021-01-01,11,22
+6,Wollongong,NSW,Regional,East,Australia/Sydney,65,2021-01-01,11,22
+7,Melbourne Central,VIC,CBD,South,Australia/Melbourne,96,2021-01-01,11,22
+8,Richmond,VIC,Suburban,South,Australia/Melbourne,68,2021-01-01,11,22
+9,Chadstone,VIC,Shopping centre,South,Australia/Melbourne,88,2021-01-01,11,22
+10,Geelong,VIC,Regional,South,Australia/Melbourne,66,2021-01-01,11,22
+11,Southbank,VIC,CBD,South,Australia/Melbourne,85,2021-01-01,11,22
+12,Ballarat,VIC,Regional,South,Australia/Melbourne,60,2021-01-01,11,22
+13,Brisbane Central,QLD,CBD,North,Australia/Brisbane,92,2021-01-01,11,22
+14,South Brisbane,QLD,Suburban,North,Australia/Brisbane,72,2021-01-01,11,22
+15,Gold Coast,QLD,Suburban,North,Australia/Brisbane,78,2021-01-01,11,22
+16,Chermside,QLD,Shopping centre,North,Australia/Brisbane,86,2021-01-01,11,22
+17,Toowoomba,QLD,Regional,North,Australia/Brisbane,62,2021-01-01,11,22
+18,Sunshine Coast,QLD,Suburban,North,Australia/Brisbane,74,2021-01-01,11,22

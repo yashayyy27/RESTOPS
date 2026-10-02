@@ -1,0 +1,23 @@
+{
+  "raw_lines_after_dedup": 2111602,
+  "clean_lines": 2105626,
+  "clean_orders": 794925,
+  "quarantined_orders": 2049,
+  "clean_revenue": 36444593.8,
+  "quarantined_revenue": -125469.65,
+  "clean_rows": {
+    "restaurants": 18,
+    "products": 24,
+    "transactions": 2105626,
+    "labour": 90558,
+    "customer_feedback": 59722,
+    "loyalty": 586584,
+    "promotions": 108,
+    "waste": 310377,
+    "targets": 432,
+    "operating_costs": 1296,
+    "delivery": 167034,
+    "calendar": 2193,
+    "manager_assignments": 18
+  }
+}

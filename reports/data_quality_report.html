@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101014">
+<title>RESTOPS · Quality audit</title>
+<style>
+:root{color-scheme:dark;--bg:#101014;--panel:#19191f;--text:#f4f4f6;--muted:#b0b0bb;--line:#363640;--red:#ff3b30;--cyan:#58d6df;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--cyan);text-underline-offset:4px}:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}.skip{position:absolute;top:-100px;left:20px;z-index:10;background:var(--panel);padding:12px}.skip:focus{top:12px}header{border-top:5px solid var(--red);background:#121216;border-bottom:1px solid var(--line);padding:24px max(5vw,24px) 35px}nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--line);flex-wrap:wrap}.logo{display:flex;align-items:center;gap:13px;color:white;font-size:24px;font-weight:900;font-style:italic;letter-spacing:-1px;text-decoration:none}.mark{width:27px;height:23px;border-top:7px solid var(--red);border-bottom:7px solid var(--red);transform:skew(-24deg)}.nav-links{display:flex;gap:20px;flex-wrap:wrap}.nav-links a{font-size:12px;color:var(--muted);text-decoration:none}.nav-links a[aria-current="page"]{color:var(--red)}.nav-links a:hover{color:white}.eyebrow{text-transform:uppercase;color:var(--red);font:10px/1.6 var(--mono);letter-spacing:1.8px;margin-top:28px}h1{font-size:clamp(38px,5vw,64px);text-transform:uppercase;font-style:italic;font-weight:900;letter-spacing:-2px;line-height:1.1;margin:14px 0}header p{max-width:760px;color:#c5c5ce;margin:14px 0}.meta{font:10px/1.6 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:1px}.toolbar{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:24px}.toolbar a{font-size:12px}.print{background:var(--red);color:#111;border:0;padding:10px 16px;border-radius:3px;font:700 12px inherit;cursor:pointer}
+main{max-width:1400px;margin:auto;padding:28px 5vw 50px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}.stat{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--red);border-radius:3px 18px 3px 3px;padding:20px}.stat-label{font:10px/1.5 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:1px}.value{font-size:clamp(25px,2.7vw,36px);font-weight:800;letter-spacing:-1px;font-variant-numeric:tabular-nums;margin:8px 0 5px;line-height:1.2}.stat-note{font-size:11px;color:var(--muted)}.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px}.contents{align-self:start;position:sticky;top:24px;border-top:2px solid var(--red);padding-top:15px}.contents h2{font:11px var(--mono);text-transform:uppercase;letter-spacing:1px;margin:0 0 16px}.contents ol{padding-left:19px;margin:0}.contents li{padding:0 0 12px 3px;color:var(--red);font-size:12px}.contents a{color:var(--muted);text-decoration:none;line-height:1.5;display:block}.contents a:hover{color:white}.content{background:var(--panel);padding:28px 32px;border:1px solid var(--line);border-radius:3px 18px 3px 3px;min-width:0}.content>:first-child{margin-top:0}.content p{max-width:90ch;color:#c5c5ce;margin:15px 0}.content strong{color:var(--text)}.content h2{font-size:23px;line-height:1.3;letter-spacing:-.5px;border-top:1px solid var(--line);padding-top:28px;margin:32px 0 18px}.content h3{font-size:18px}.content ul{padding-left:22px;color:#c5c5ce}.content li{margin-bottom:10px}.content .action{border-left:3px solid var(--red);background:#242025;padding:14px 18px}.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:3px}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.6}th,td{padding:14px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font:10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.7px;background:#141419}td{min-width:110px;color:#e1e1e7}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#24242c}code{color:var(--cyan);font-size:12px}footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.contents{position:static}.contents ol{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.stats{grid-template-columns:repeat(2,1fr)}main{padding:24px 20px 40px}.content{padding:22px}}
+@media(max-width:500px){.nav-links{gap:12px}.nav-links a{font-size:11px}.stats{gap:10px}.stat{padding:16px 12px}.contents ol{grid-template-columns:1fr}.content{padding:18px}.content h2{font-size:21px}.value{font-size:25px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{:root{color-scheme:light;--bg:white;--panel:white;--text:#111;--muted:#444;--line:#aaa;--red:#b82520;--cyan:#135965}body{font-size:11px}header{background:white;padding:15px 0}nav,.toolbar,.contents{display:none}header p,.content p,.content li,td{color:#222}main{padding:18px 0}.layout{display:block}.content{border:0;padding:0}.stats{grid-template-columns:repeat(4,1fr);gap:8px}.stat{padding:12px}.value{font-size:20px}.content .action{background:#f5f5f5}.table-wrap{overflow:visible}th{background:#eee;color:#333}thead{display:table-header-group}tr{break-inside:avoid}.content h2{break-after:avoid}a{color:#135965}.logo{color:#111}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#report-content">Skip to report</a>
+<header>
+  <nav aria-label="Report navigation"><a class="logo" href="portfolio.html"><span class="mark" aria-hidden="true"></span>RESTOPS</a><div class="nav-links"><a href="executive_summary.html">Executive summary</a><a href="business_recommendations.html">Action plan</a><a href="data_quality_report.html" aria-current="page">Quality audit</a></div></nav>
+  <div class="eyebrow">03 / Management briefing</div>
+  <h1>Quality audit</h1>
+  <p>Trace the validation rules, repairs and exclusions behind the restaurant scorecards.</p>
+  <div class="meta">Southern Table Hospitality / January 2024–December 2025 / Synthetic case study</div>
+  <div class="toolbar"><a href="portfolio.html">← Performance overview</a><a href="data_quality_report.md" download>Download Markdown</a><a href="exports/data_quality_audit.csv" download>Download audit CSV</a><button class="print" type="button" onclick="window.print()">Print / Save PDF</button></div>
+</header>
+<main>
+  <div class="stats" aria-label="Report highlights"><div class="stat"><div class="stat-label">Validated lines</div><div class="value">2,105,626</div><div class="stat-note">Complete retained baskets</div></div><div class="stat"><div class="stat-label">Quarantined orders</div><div class="value">2,049</div><div class="stat-note">Whole orders excluded from KPIs</div></div><div class="stat"><div class="stat-label">Order retention</div><div class="value">99.74%</div><div class="stat-note">After deduplication · not a quality score</div></div><div class="stat"><div class="stat-label">Source datasets</div><div class="value">13</div><div class="stat-note">Validated across connected systems</div></div></div>
+  <div class="layout"><aside class="contents" aria-label="Report contents"><h2>In this report</h2><ol><li><a href="#section-1">Validation rules and actions</a></li><li><a href="#section-2">How to interpret the audit</a></li></ol></aside><article class="content" id="report-content"><p>Generated from rule checks; the cleaning pipeline does not use hidden generation truth.</p>
+<p>Retained <strong>794,925 complete orders</strong> and <strong>2,105,626 lines</strong>. Quarantined 2,049 complete orders to avoid partial baskets.</p>
+<h2 id="section-1">Validation rules and actions</h2>
+<div class="table-wrap"><table><thead>
+<tr>
+  <th>Table</th>
+  <th>Rule</th>
+  <th style="text-align:right">Rows</th>
+  <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>transactions</td>
+  <td>Exact duplicate records</td>
+  <td style="text-align:right">2,300</td>
+  <td>Removed</td>
+</tr>
+<tr>
+  <td>labour</td>
+  <td>Exact duplicate records</td>
+  <td style="text-align:right">180</td>
+  <td>Removed</td>
+</tr>
+<tr>
+  <td>customer_feedback</td>
+  <td>Exact duplicate records</td>
+  <td style="text-align:right">100</td>
+  <td>Removed</td>
+</tr>
+<tr>
+  <td>products</td>
+  <td>Category aliases</td>
+  <td style="text-align:right">2</td>
+  <td>Mapped to canonical categories</td>
+</tr>
+<tr>
+  <td>products</td>
+  <td>Category inconsistent with approved menu taxonomy</td>
+  <td style="text-align:right">2</td>
+  <td>Corrected using checked-in business reference</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>Store name inconsistent with restaurant_id</td>
+  <td style="text-align:right">2,600</td>
+  <td>Replaced from restaurant master</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>Invalid product foreign key</td>
+  <td style="text-align:right">800</td>
+  <td>Quarantine complete affected order</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>Invalid timestamp</td>
+  <td style="text-align:right">650</td>
+  <td>Quarantine complete affected order</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>Invalid quantity</td>
+  <td style="text-align:right">350</td>
+  <td>Quarantine complete affected order</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>Invalid monetary values</td>
+  <td style="text-align:right">250</td>
+  <td>Quarantine complete affected order</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>Revenue reconciliation</td>
+  <td style="text-align:right">250</td>
+  <td>Quarantine complete affected order</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>GST reconciliation</td>
+  <td style="text-align:right">250</td>
+  <td>Quarantine complete affected order</td>
+</tr>
+<tr>
+  <td>transactions</td>
+  <td>Complete-order quarantine (including companion lines)</td>
+  <td style="text-align:right">5,976</td>
+  <td>Excluded from financial and order KPIs</td>
+</tr>
+<tr>
+  <td>customer_feedback</td>
+  <td>Invalid satisfaction score</td>
+  <td style="text-align:right">50</td>
+  <td>Set null; retained survey</td>
+</tr>
+<tr>
+  <td>customer_feedback</td>
+  <td>Order quarantined</td>
+  <td style="text-align:right">181</td>
+  <td>Order link set null</td>
+</tr>
+<tr>
+  <td>delivery</td>
+  <td>Order quarantined</td>
+  <td style="text-align:right">439</td>
+  <td>Linked event excluded</td>
+</tr>
+<tr>
+  <td>loyalty</td>
+  <td>Order quarantined</td>
+  <td style="text-align:right">1,384</td>
+  <td>Linked event excluded</td>
+</tr>
+<tr>
+  <td>labour</td>
+  <td>Paid hours inconsistent with shift duration and break</td>
+  <td style="text-align:right">60</td>
+  <td>Recomputed from actual timestamps</td>
+</tr>
+<tr>
+  <td>labour</td>
+  <td>Missing hourly cost</td>
+  <td style="text-align:right">130</td>
+  <td>Median of same role/weekend/holiday class; flagged</td>
+</tr>
+<tr>
+  <td>waste</td>
+  <td>Negative waste quantities</td>
+  <td style="text-align:right">70</td>
+  <td>Quarantined; not silently converted to zero</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="section-2">How to interpret the audit</h2>
+<p>Counts can overlap across rules. The final quarantine row is the union, including companion lines. Raw exports remain unchanged. Null customer IDs represent anonymous orders, not errors. Missing survey answers remain null. Lost-order surveys remain in store satisfaction but are excluded from matched order analyses.</p>
+<p>Labour-rate inference is appropriate only for this synthetic roster's known rate classes. A production system would require an authoritative payroll rate table.</p>
+</article></div>
+  <footer>RESTOPS · All outcomes are fictional. Currency is AUD excluding GST. Estimates support operational testing and do not establish causal effects. Design inspired by motorsport; no affiliation with Formula 1.</footer>
+</main>
+</body>
+</html>

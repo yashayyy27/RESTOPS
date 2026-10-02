@@ -1,0 +1,111 @@
+table,grain,field,definition,primary_key
+restaurants,One restaurant,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,True
+restaurants,One restaurant,restaurant_name,Canonical restaurant display name; cleaned from the restaurant master,False
+restaurants,One restaurant,state,"NSW, VIC or QLD; determines state calendar and timezone",False
+restaurants,One restaurant,location_type,"CBD, Suburban, Shopping centre or Regional peer group",False
+restaurants,One restaurant,area,"Fictional management area: East, South or North",False
+restaurants,One restaurant,timezone,IANA timezone for local POS and roster timestamps,False
+restaurants,One restaurant,seats,Simulated dining capacity; seats,False
+restaurants,One restaurant,opening_date,Restaurant opening date; ISO date,False
+restaurants,One restaurant,open_hour,"Local opening hour, inclusive",False
+restaurants,One restaurant,close_hour,"Local closing hour, exclusive",False
+products,One menu product,product_id,Stable product foreign key; primary key in product master,True
+products,One menu product,product_name,Menu item name validated against the approved category taxonomy,False
+products,One menu product,category,"Canonical category: Mains, Salads, Sides, Drinks or Desserts",False
+products,One menu product,menu_price_ex_gst,2024 base unit menu price; AUD excluding GST,False
+products,One menu product,standard_ingredient_cost,2024 base unit ingredient cost; AUD,False
+transactions,One product line in a complete customer order,transaction_line_id,Unique exported POS product-line key,True
+transactions,One product line in a complete customer order,order_id,Basket identifier; multiple lines belong to one order; optional for enrolment/unlinked surveys,False
+transactions,One product line in a complete customer order,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+transactions,One product line in a complete customer order,restaurant_name,Canonical restaurant display name; cleaned from the restaurant master,False
+transactions,One product line in a complete customer order,timestamp_local,"Store-local order timestamp, YYYY-MM-DD HH:MM:SS; interpret with restaurant timezone",False
+transactions,One product line in a complete customer order,product_id,Stable product foreign key; primary key in product master,False
+transactions,One product line in a complete customer order,quantity,Units sold on the line; validated range 1–20,False
+transactions,One product line in a complete customer order,channel,"Dine-in, Takeaway or Delivery",False
+transactions,One product line in a complete customer order,customer_id,Anonymous store-local customer identifier; null means unidentified order,False
+transactions,One product line in a complete customer order,promotion_id,Campaign foreign key; null means no attributed campaign,False
+transactions,One product line in a complete customer order,list_revenue,Line quantity × sale-time menu price before discount; AUD excluding GST,False
+transactions,One product line in a complete customer order,discount_amount,Line or order discount already deducted from revenue; AUD excluding GST,False
+transactions,One product line in a complete customer order,net_revenue,Line sales after discount; AUD excluding GST,False
+transactions,One product line in a complete customer order,gst_amount,Simplified tax component: 10% of net line revenue; AUD,False
+transactions,One product line in a complete customer order,ingredient_cost,Sale-time ingredient cost for sold units; excludes waste; AUD,False
+transactions,One product line in a complete customer order,business_date,"Local trading date, ISO YYYY-MM-DD",False
+transactions,One product line in a complete customer order,month,YYYY-MM for facts/budgets; integer 1–12 only in calendar,False
+transactions,One product line in a complete customer order,hour,"Local order hour, 11–21",False
+transactions,One product line in a complete customer order,daypart,"Lunch 11:00–15:59, Dinner 16:00–21:59",False
+labour,One employee shift,shift_id,Unique employee shift key,True
+labour,One employee shift,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+labour,One employee shift,employee_id,Fictional employee identifier; no personal data,False
+labour,One employee shift,role,"Service, Kitchen or Manager",False
+labour,One employee shift,business_date,"Local trading date, ISO YYYY-MM-DD",False
+labour,One employee shift,daypart,"Lunch 11:00–15:59, Dinner 16:00–21:59",False
+labour,One employee shift,scheduled_start,Planned shift start in local time,False
+labour,One employee shift,scheduled_end,Planned shift end in local time,False
+labour,One employee shift,actual_start,Observed shift start in local time; scheduled=actual in this simulation,False
+labour,One employee shift,actual_end,Observed shift end in local time,False
+labour,One employee shift,break_hours,Unpaid break duration; hours,False
+labour,One employee shift,paid_hours,Actual shift duration less unpaid breaks; hours,False
+labour,One employee shift,hourly_cost,Simulated loaded cost for role and weekend/holiday class; AUD/hour,False
+labour,One employee shift,rate_imputed,1 if hourly cost inferred from comparable valid shifts; otherwise 0,False
+labour,One employee shift,labour_cost,Paid hours × loaded hourly cost; AUD,False
+customer_feedback,One survey submission,feedback_id,Unique survey submission key,True
+customer_feedback,One survey submission,order_id,Basket identifier; multiple lines belong to one order; optional for enrolment/unlinked surveys,False
+customer_feedback,One survey submission,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+customer_feedback,One survey submission,business_date,"Local trading date, ISO YYYY-MM-DD",False
+customer_feedback,One survey submission,overall_score,Overall satisfaction 1–5; null for unanswered or invalid rating,False
+customer_feedback,One survey submission,food_score,Food satisfaction integer 1–5,False
+customer_feedback,One survey submission,service_score,Service satisfaction integer 1–5,False
+loyalty,One identified-customer loyalty event,loyalty_event_id,Unique loyalty event key,True
+loyalty,One identified-customer loyalty event,customer_id,Anonymous store-local customer identifier; null means unidentified order,False
+loyalty,One identified-customer loyalty event,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+loyalty,One identified-customer loyalty event,order_id,Basket identifier; multiple lines belong to one order; optional for enrolment/unlinked surveys,False
+loyalty,One identified-customer loyalty event,event_date,Local event date; ISO YYYY-MM-DD,False
+loyalty,One identified-customer loyalty event,event_type,"Enroll, Earn or Redeem; redemption is behavioural, not an extra monetary discount",False
+loyalty,One identified-customer loyalty event,points,"Points earned (positive), redeemed (negative), or zero on enrolment; no currency conversion",False
+promotions,One campaign at one restaurant,promotion_id,Campaign foreign key; null means no attributed campaign,True
+promotions,One campaign at one restaurant,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+promotions,One campaign at one restaurant,campaign_name,"Local Lunch, Winter Value or Spring Social",False
+promotions,One campaign at one restaurant,start_date,"Campaign or assignment effective start, inclusive; ISO date",False
+promotions,One campaign at one restaurant,end_date,"Campaign or assignment effective end, inclusive; ISO date",False
+promotions,One campaign at one restaurant,discount_rate,Fraction of pre-discount sales; 0.10 means 10%,False
+promotions,One campaign at one restaurant,eligible_category,All in this version; campaign applies to every product,False
+promotions,One campaign at one restaurant,campaign_cost,"Unique campaign/store spend, or allocated daily campaign spend in marts; AUD",False
+waste,One restaurant/product/date waste record,waste_id,Unique waste ledger key,True
+waste,One restaurant/product/date waste record,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+waste,One restaurant/product/date waste record,product_id,Stable product foreign key; primary key in product master,False
+waste,One restaurant/product/date waste record,business_date,"Local trading date, ISO YYYY-MM-DD",False
+waste,One restaurant/product/date waste record,waste_units,Discarded product-equivalent units; non-negative count,False
+waste,One restaurant/product/date waste record,waste_cost,Discarded unit ingredient cost at period prices; AUD,False
+waste,One restaurant/product/date waste record,reason,"Over-preparation, Spoilage or Preparation error; illustrative classification",False
+targets,One restaurant/month budget,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,True
+targets,One restaurant/month budget,month,YYYY-MM for facts/budgets; integer 1–12 only in calendar,True
+targets,One restaurant/month budget,revenue_target,Independent restaurant/month revenue budget; AUD excluding GST,False
+targets,One restaurant/month budget,operating_margin_target,Budget operating margin fraction,False
+targets,One restaurant/month budget,labour_pct_target,Maximum desired labour-cost/revenue fraction,False
+targets,One restaurant/month budget,waste_pct_target,Desired waste/(sold ingredient cost + waste) fraction,False
+targets,One restaurant/month budget,satisfaction_target,Desired mean score on the 1–5 scale,False
+operating_costs,One restaurant/month/cost-category ledger entry,cost_id,Unique operating-cost ledger key,True
+operating_costs,One restaurant/month/cost-category ledger entry,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+operating_costs,One restaurant/month/cost-category ledger entry,month,YYYY-MM for facts/budgets; integer 1–12 only in calendar,False
+operating_costs,One restaurant/month/cost-category ledger entry,cost_category,"Rent, Utilities or Other overhead; labour/ingredients excluded to prevent duplication",False
+operating_costs,One restaurant/month/cost-category ledger entry,amount,Monthly operating-cost amount; AUD,False
+delivery,One completed delivery order,order_id,Basket identifier; multiple lines belong to one order; optional for enrolment/unlinked surveys,True
+delivery,One completed delivery order,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,False
+delivery,One completed delivery order,promised_minutes,Promised delivery time from order; minutes,False
+delivery,One completed delivery order,actual_minutes,Observed simulated delivery time; minutes,False
+delivery,One completed delivery order,commission_cost,Platform commission at 25% of net delivery sales; AUD,False
+delivery,One completed delivery order,delivery_fee,Restaurant-collected fee; zero in this simulation,False
+delivery,One completed delivery order,status,Completed; cancellations are not simulated,False
+calendar,One state/date,business_date,"Local trading date, ISO YYYY-MM-DD",True
+calendar,One state/date,state,"NSW, VIC or QLD; determines state calendar and timezone",True
+calendar,One state/date,holiday_name,State public holiday label from holidays package; blank on ordinary dates,False
+calendar,One state/date,is_public_holiday,"1 for public holiday, else 0",False
+calendar,One state/date,weekday,Monday=0 through Sunday=6,False
+calendar,One state/date,is_weekend,"1 for Saturday/Sunday, else 0",False
+calendar,One state/date,month,YYYY-MM for facts/budgets; integer 1–12 only in calendar,False
+calendar,One state/date,season,"Australian meteorological season: Summer, Autumn, Winter or Spring",False
+calendar,One state/date,school_holiday_proxy,"Illustrative seasonal proxy, not an official school calendar; 0/1",False
+manager_assignments,One manager/store effective period,restaurant_id,Stable restaurant foreign key (1–18); primary key in the restaurant master,True
+manager_assignments,One manager/store effective period,manager_id,"Anonymous simulated manager; one per store, so manager effect is not separately identifiable",False
+manager_assignments,One manager/store effective period,start_date,"Campaign or assignment effective start, inclusive; ISO date",True
+manager_assignments,One manager/store effective period,end_date,"Campaign or assignment effective end, inclusive; ISO date",False

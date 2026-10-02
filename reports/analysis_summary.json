@@ -1,0 +1,16 @@
+{
+  "staffing_association": {
+    "controlled_correlation": -0.25254878668189723,
+    "ci_low": -0.30566218711305637,
+    "ci_high": -0.20208254130883804,
+    "store_days": 10399,
+    "method": "Ridge residualisation; approximate store-cluster bootstrap with fixed residuals",
+    "interpretation": "Association, not a causal effect; survey responses are selective"
+  },
+  "eligible_customers": 53385,
+  "repeat_customer_rate": 0.562536292966189,
+  "anomaly_count": 378,
+  "customers": 53654,
+  "promotion_estimates": 102,
+  "pressure_hour_share": 0.1775276706877254
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101014">
+<title>RESTOPS · Performance control</title>
+<style>
+:root{color-scheme:dark;--bg:#101014;--panel:#19191f;--raised:#202027;--text:#f4f4f6;--muted:#b0b0bb;--line:#363640;--red:#ff3b30;--cyan:#58d6df;--amber:#ffc16a;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--cyan);text-underline-offset:4px}button,select{font:inherit}button,a,select{-webkit-tap-highlight-color:transparent}:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}
+header{position:relative;overflow:hidden;border-top:5px solid var(--red);border-bottom:1px solid var(--line);padding:25px max(5vw,24px) 0;background:#121216}header::after{content:"";position:absolute;top:0;right:0;width:40%;height:100%;pointer-events:none;background:repeating-linear-gradient(135deg,transparent 0 22px,#ffffff03 22px 23px)}nav{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:25px;border-bottom:1px solid var(--line)}.logo{display:flex;align-items:center;gap:13px;color:white;font-size:24px;font-weight:900;font-style:italic;letter-spacing:-1px}.brand-mark{width:27px;height:23px;border-top:7px solid var(--red);border-bottom:7px solid var(--red);transform:skew(-24deg)}.logo small{font:10px var(--mono);letter-spacing:2px;color:var(--muted);border-left:1px solid #565660;padding-left:14px;margin-left:6px}.nav-links{display:flex;gap:25px}.nav-links a{font-size:12px;color:var(--text);text-decoration:none}.nav-links a:hover{color:var(--red)}
+.hero{position:relative;z-index:1;display:grid;grid-template-columns:1.35fr 1fr;align-items:center;gap:25px;padding:45px 0 35px}.eyebrow{text-transform:uppercase;color:var(--muted);font:10px/1.6 var(--mono);letter-spacing:1.8px}.eyebrow.accent{color:var(--red)}.eyebrow::before{content:"";display:inline-block;width:17px;height:2px;background:var(--red);vertical-align:middle;margin-right:9px}h1{font-size:clamp(44px,5.4vw,78px);text-transform:uppercase;font-weight:950;font-style:italic;letter-spacing:-3.5px;line-height:.98;margin:23px 0}h1 span{color:var(--red)}.hero p{color:#c5c5ce;max-width:590px;font-size:15px;margin:0 0 25px}.hero-meta{display:flex;gap:22px;color:var(--muted);font:10px var(--mono);text-transform:uppercase;flex-wrap:wrap}.hero-meta b{display:block;color:var(--text);font-size:15px;margin-bottom:5px}.hero-art{position:relative;padding:22px 0 10px 20px}.telemetry-label{display:flex;justify-content:space-between;color:var(--muted);font:10px var(--mono);text-transform:uppercase;letter-spacing:1px}.track{display:block;width:100%;height:auto;margin:18px 0}.art-caption{border-top:1px solid var(--line);padding-top:14px;font:11px var(--mono);color:var(--muted);display:flex;justify-content:space-between;gap:10px}.art-caption b{color:var(--red);font-weight:600}.session-strip{position:relative;z-index:1;padding:14px 0;display:flex;justify-content:space-between;align-items:center;gap:15px;border-top:1px solid var(--line);font:10px var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--muted)}.session-strip span{display:flex;gap:9px;align-items:center}.status-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}.checker{width:26px;height:14px;background:conic-gradient(#eee 25%,#18181c 0 50%,#eee 0 75%,#18181c 0) 0 0/7px 7px;transform:skew(-15deg)}
+main{max-width:1400px;margin:auto;padding:27px 5vw 60px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:35px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:3px 18px 3px 3px;padding:24px}.stats>.card{border-top:3px solid var(--red)}.value{font-size:clamp(25px,2.8vw,39px);font-weight:800;letter-spacing:-1.5px;margin:8px 0 5px;font-variant-numeric:tabular-nums;line-height:1.15}.note{font-size:11px;color:var(--muted);line-height:1.65}h2{font-size:clamp(24px,2.7vw,34px);line-height:1.15;letter-spacing:-.8px;margin:7px 0 0;font-weight:850}h3{font-size:17px;line-height:1.35;margin:0 0 10px;letter-spacing:-.3px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin:36px 0 22px}.pill{display:inline-flex;align-items:center;gap:8px;background:#172b2d;color:#88e0e6;border:1px solid #2b5357;padding:6px 11px;border-radius:3px;font:10px/1.4 var(--mono)}.pill.amber{background:#30281d;color:var(--amber);border-color:#55422d}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}.tabs button{background:var(--raised);border:1px solid var(--line);padding:13px 19px;border-radius:3px 12px 0 0;color:var(--muted);cursor:pointer;font-size:12px;font-weight:650}.tabs button span{font:10px var(--mono);margin-right:8px;opacity:.7}.tabs button:hover{border-color:#6e6e78;color:white}.tabs button[aria-selected="true"]{background:var(--red);color:#111;border-color:var(--red);font-weight:800}.page[hidden]{display:none}.grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px}.full{grid-column:1/-1}.chart{display:block;width:100%;height:auto;border-radius:2px;margin:9px 0}.panel-title{display:flex;justify-content:space-between;gap:12px;align-items:start;margin-bottom:12px}.panel-title .code{color:#a3a3af;font:10px var(--mono);white-space:nowrap}
+.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.store-grid .card{padding:14px 11px;background:#15151b;border-radius:3px}.store-grid .value{font-size:24px;letter-spacing:-1px}.store-grid .eyebrow{font-size:9px;letter-spacing:.7px}.store-grid .eyebrow::before{display:none}.select{padding:10px 13px;border:1px solid #62626c;border-radius:3px;color:var(--text);background:#14141a;font-size:13px;width:100%}svg{width:100%;height:auto}.table-wrap{overflow:auto;margin:12px -8px 0}table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:13px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}td{font-variant-numeric:tabular-nums}th{color:var(--muted);font:9px var(--mono);text-transform:uppercase;letter-spacing:1px}th:nth-child(-n+2),td:nth-child(-n+2){text-align:left}.position{color:#aaaab5;font:italic 15px var(--mono)}.store-link{border:0;border-left:3px solid transparent;padding:4px 0 4px 9px;background:none;color:white;cursor:pointer;font-size:12px;font-weight:650}.store-link:hover{color:var(--red)}tr[data-active="true"]{background:#30201f}tr[data-active="true"] .store-link{border-left-color:var(--red)}.score{display:inline-flex;min-width:56px;justify-content:center;gap:5px;padding:4px 8px;border:1px solid #3d494c;border-radius:3px;font:12px var(--mono);color:var(--cyan)}.score.review{color:var(--amber);border-color:#66503a}
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:18px}.insight{position:relative;border-top:3px solid var(--red)}.insight .number{color:var(--red);font:10px var(--mono);letter-spacing:1.5px;margin-bottom:12px}.insight p{margin:9px 0;color:#c4c4ce;font-size:13px}.insight p b{color:var(--text)}.action{background:#242025;border-left:2px solid var(--red);padding:13px 15px;margin-top:18px;font-size:12px;color:#e4e4eb}.action b{color:var(--red)}.workflow{display:flex;gap:12px;flex-wrap:wrap}.workflow span{flex:1;min-width:155px;padding:18px 14px;background:#141419;border:1px solid var(--line);border-radius:3px;font-size:12px;color:var(--muted)}.workflow b{display:block;color:var(--text);font:12px var(--mono);margin-bottom:5px}.workflow i{font-style:normal;color:var(--red)}.footer{border-top:1px solid var(--line);padding-top:20px;font-size:11px;color:var(--muted);margin-top:30px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:1050px){.hero-art{padding-left:0}.stats .card{padding:18px}.store-grid{grid-template-columns:1fr}.store-grid .card{display:grid;grid-template-columns:1fr auto;align-items:center}.store-grid .note{grid-column:1/-1}}
+@media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:35px}.hero-art{display:none}.grid,.insights{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}main{padding:22px 18px 40px}.logo small,.nav-links{display:none}.section-head{align-items:flex-start;flex-direction:column;gap:12px}.store-grid{grid-template-columns:repeat(3,1fr)}.store-grid .card{display:block}h1{letter-spacing:-2px}.session-strip{flex-wrap:wrap;font-size:9px}}
+@media(max-width:500px){.store-grid{grid-template-columns:1fr}.store-grid .card{display:grid;grid-template-columns:1fr auto;align-items:center}.stats{gap:10px}.stats .card{padding:15px 12px}.value{font-size:25px}.tabs{display:grid;grid-template-columns:1fr 1fr}.tabs button{padding:11px 8px;text-align:left;font-size:11px}.tabs button span{margin-right:4px}.panel{padding:19px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{:root{color-scheme:light;--bg:white;--panel:white;--text:#111;--muted:#444;--line:#aaa}.tabs,.hero-art{display:none}.page[hidden]{display:block}.card,.panel{break-inside:avoid}.insights{display:block}.insight{margin-bottom:16px}}
+</style>
+</head>
+<body>
+<header>
+  <nav><span class="logo"><span class="brand-mark" aria-hidden="true"></span>RESTOPS<small>PERFORMANCE CONTROL</small></span><div class="nav-links"><a href="#workspace">Performance overview ↗</a><a href="#decisions">Management actions ↗</a></div></nav>
+  <div class="hero">
+    <div><div class="eyebrow accent">Restaurant operations / business intelligence</div><h1>Every restaurant.<br>Every margin.<br><span>Every move.</span></h1><p>Restaurant Operations &amp; Profitability Intelligence. Understand what drives performance, spot the pressure points, and choose your next operational move.</p><div class="hero-meta"><div><b>18 restaurants</b>Southern Table Hospitality</div><div><b>24 months</b>January 2024 – December 2025</div><div><b>Australia</b>NSW / VIC / QLD</div></div></div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="telemetry-label"><span>RESTOPS / performance circuit</span><span>01—04</span></div>
+      <svg class="track" viewBox="0 0 440 260" fill="none">
+        <path d="M55 55H348Q392 55 392 95V124Q392 145 368 145H328Q313 145 313 164V192Q313 218 284 218H191L160 184H110Q78 184 78 149V129H55Q28 129 28 101V83Q28 55 55 55Z" stroke="#32323d" stroke-width="26"/>
+        <path d="M55 55H348Q392 55 392 95V124Q392 145 368 145H328Q313 145 313 164V192Q313 218 284 218H191L160 184H110Q78 184 78 149V129H55Q28 129 28 101V83Q28 55 55 55Z" stroke="#656571" stroke-width="1" stroke-dasharray="3 6"/>
+        <path d="M90 55H348Q392 55 392 95V124Q392 145 368 145H328Q313 145 313 164V192Q313 218 284 218H232" stroke="#ff3b30" stroke-width="4"/>
+        <circle cx="90" cy="55" r="6" fill="#ff3b30"/><circle cx="232" cy="218" r="6" fill="#ff3b30"/>
+        <path d="M204 103l-17 22h18l-17 22" stroke="#ff3b30" stroke-width="4"/>
+        <text x="227" y="120" fill="#f4f4f6" font-family="monospace" font-size="12" font-weight="bold">DATA → DECISION</text><text x="227" y="141" fill="#aaaab5" font-family="monospace" font-size="8">A WEEKLY OPERATING RHYTHM</text>
+        <text x="76" y="36" fill="#ff7066" font-family="monospace" font-size="9">01 / REVIEW</text><text x="321" y="177" fill="#aaaab5" font-family="monospace" font-size="9">02 / DIAGNOSE</text><text x="164" y="246" fill="#aaaab5" font-family="monospace" font-size="9">03 / ACT</text><text x="89" y="153" fill="#aaaab5" font-family="monospace" font-size="9">04 / MEASURE</text>
+      </svg>
+      <div class="art-caption"><span>CONNECTED SIGNALS. CLEAR PRIORITIES.</span><b>ONE OPERATION.</b></div>
+    </div>
+  </div>
+  <div class="session-strip"><span><i class="status-dot" aria-hidden="true"></i>Validated historical data / synthetic case study</span><span>Weekly management decisions <i class="checker" aria-hidden="true"></i></span></div>
+</header>
+<main>
+  <div class="stats" id="chainStats"></div>
+  <div class="section-head" id="workspace"><div><div class="eyebrow">01 / Performance control</div><h2>The complete operating picture.</h2></div><span class="pill">Validated data · Reproducible pipeline</span></div>
+  <div class="tabs" role="tablist" aria-label="Analytics views">
+    <button role="tab" id="tab-executive" aria-controls="executive" aria-selected="true" data-tab="executive"><span aria-hidden="true">01</span>Executive performance</button>
+    <button role="tab" id="tab-operations" aria-controls="operations" aria-selected="false" data-tab="operations"><span aria-hidden="true">02</span>Operations</button>
+    <button role="tab" id="tab-customers" aria-controls="customers" aria-selected="false" data-tab="customers"><span aria-hidden="true">03</span>Customer &amp; loyalty</button>
+    <button role="tab" id="tab-forecast" aria-controls="forecast" aria-selected="false" data-tab="forecast"><span aria-hidden="true">04</span>Forecast &amp; opportunities</button>
+  </div>
+  <section id="executive" class="page" role="tabpanel" aria-labelledby="tab-executive"><div class="grid">
+    <div class="panel"><div class="panel-title"><h3>Growth &amp; profitability</h3><span class="code">FIN / 01</span></div><div class="note">All restaurants · full historical period</div><img class="chart" src="figures/executive_trend.png" alt="Chain monthly revenue and operating profit trends"></div>
+    <div class="panel"><div class="panel-title"><h3>Restaurant focus</h3><span class="code">STORE / 18</span></div><label class="sr-only" for="store">Select restaurant</label><select class="select" id="store"></select><div class="store-grid" id="storeStats"></div><p id="storeMessage" class="note"></p><div id="sparkline"></div><div class="note">Selected restaurant · monthly revenue, 2024–2025</div></div>
+    <div class="panel full"><div class="panel-title"><h3>Restaurant performance grid</h3><span class="code">Q4 / 2025</span></div><div class="note">Ranked by operating margin, lowest first · select a restaurant to investigate its performance</div><div class="table-wrap"><table><thead><tr><th>Priority</th><th>Restaurant</th><th>Margin</th><th>Labour %</th><th>Waste %</th><th>Satisfaction</th><th>Index</th></tr></thead><tbody id="storeRows"></tbody></table></div></div>
+  </div></section>
+  <section id="operations" class="page" hidden role="tabpanel" aria-labelledby="tab-operations"><div class="grid">
+    <div class="panel"><div class="panel-title"><h3>Demand &amp; staffing</h3><span class="code">OPS / 01</span></div><img class="chart" src="figures/staffing_heatmap.png" alt="Service pressure by weekday and local hour"><p class="note">Capacity assumes six orders per paid service hour. Break time is spread across each shift; validate this benchmark before a real roster change.</p></div>
+    <div class="panel"><div class="panel-title"><h3>Menu economics</h3><span class="code">OPS / 02</span></div><img class="chart" src="figures/product_contribution.png" alt="Gross contribution by product category"><p class="note">Contribution subtracts ingredient costs. Additional preparation labour and delivery commissions need separate consideration.</p></div>
+    <div class="panel full"><div class="panel-title"><h3>Restaurant margin comparison</h3><span class="code">OPS / 03</span></div><img class="chart" src="figures/restaurant_margins.png" alt="Operating margin ranking for 18 restaurants in the latest quarter"></div>
+  </div></section>
+  <section id="customers" class="page" hidden role="tabpanel" aria-labelledby="tab-customers"><div class="grid">
+    <div class="panel"><div class="panel-title"><h3>A retention worklist</h3><span class="code">GUEST / 01</span></div><img class="chart" src="figures/customer_segments.png" alt="Identified customer counts by RFM segment"><p class="note">Anonymous orders are excluded from customer rates. Return cohorts require a complete 90-day follow-up window.</p></div>
+    <div class="panel"><div class="panel-title"><h3>Promotion contribution</h3><span class="code">GUEST / 02</span></div><img class="chart" src="figures/promotion_roi.png" alt="Estimated promotion ROI by campaign"><p class="note">Observational peer comparison, not a causal trial. Campaign estimates and approximate uncertainty ranges are available in the Tableau export.</p></div>
+  </div></section>
+  <section id="forecast" class="page" hidden role="tabpanel" aria-labelledby="tab-forecast"><div class="panel"><div class="panel-title"><h3>Four-week planning view</h3><span class="code">PLAN / 28 DAYS</span></div><span class="pill" id="model"></span><img class="chart" src="figures/forecast.png" alt="Historical chain sales followed by the next 28 daily forecasts"><p class="note">Forecasts cover January 2026 as a continuation of the synthetic history. Model selection uses three rolling validation folds; the final month is a separate holdout. Store-level empirical error bands are exported; chain bands are not formed by adding store bounds.</p></div></section>
+  <div class="section-head" id="decisions"><div><div class="eyebrow">02 / Management actions</div><h2>Eight signals. Clear next moves.</h2></div><span class="pill amber">Estimates require operational testing</span></div>
+  <div class="insights" id="insights"></div>
+  <div class="section-head"><div><div class="eyebrow">03 / The operating rhythm</div><h2>A clear route from data to decisions.</h2></div></div>
+  <div class="panel"><div class="workflow"><span><b><i>01</i> / GENERATE</b>Connected synthetic systems</span><span><b><i>02</i> / VALIDATE</b>Quality checks and quarantine</span><span><b><i>03</i> / EXPLAIN</b>KPIs, SQL and diagnostics</span><span><b><i>04</i> / PLAN</b>Forecasts and management actions</span></div><p class="note">Python · Pandas · NumPy · Matplotlib · scikit-learn · SQLite · Jupyter · Tableau-ready CSVs</p><a href="executive_summary.html">Executive summary</a> &nbsp; <a href="business_recommendations.html">Action plan</a> &nbsp; <a href="data_quality_report.html">Quality audit</a></div>
+  <footer class="footer">RESTOPS · Southern Table Hospitality is fictional. All currency is AUD excluding GST. Costs, capacity assumptions and customer behaviour are simulated. This overview is separate from the planned Tableau workbook. Design inspired by motorsport; no affiliation with Formula 1.</footer>
+</main>
+<script>
+const data = __RESTOPS_DATA__;
+const fmtMoney = n => new Intl.NumberFormat('en-AU', {style:'currency', currency:'AUD', maximumFractionDigits:0}).format(n);
+const pct = n => (n * 100).toFixed(1) + '%';
+const escapeText = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
+const card = (label, value, note) => `<div class="card"><div class="eyebrow">${label}</div><div class="value">${value}</div><div class="note">${note}</div></div>`;
+document.getElementById('chainStats').innerHTML = card('Net revenue', fmtMoney(data.summary.revenue), 'Full history · AUD excluding GST') + card('Operating margin', pct(data.summary.profit / data.summary.revenue), 'All observed operating costs included') + card('Complete orders', data.summary.orders.toLocaleString('en-AU'), 'After quality validation') + card('90-day repeat rate', pct(data.summary.repeat_rate), 'Eligible identified customer cohorts');
+const sorted = [...data.stores].sort((a, b) => a.operating_margin_pct - b.operating_margin_pct);
+const store = document.getElementById('store');
+sorted.forEach(s => store.add(new Option(s.restaurant_name, s.restaurant_id)));
+function updateStore() {
+  const s = data.stores.find(s => s.restaurant_id === Number(store.value));
+  document.getElementById('storeStats').innerHTML = card('Q4 margin', pct(s.operating_margin_pct), 'Oct–Dec 2025') + card('Waste', pct(s.waste_pct), 'Ingredient cost base') + card('Satisfaction', s.satisfaction_score.toFixed(2) + '/5', s.survey_responses.toLocaleString() + ' answered surveys');
+  document.getElementById('storeMessage').textContent = s.location_type + ' · ' + s.state + ' · Labour ' + pct(s.labour_cost_pct) + ' of revenue';
+  const rows = data.monthly.filter(r => r.restaurant_id === s.restaurant_id);
+  const max = Math.max(...rows.map(r => r.revenue)) * 1.1;
+  const points = rows.map((r, i) => `${40 + i * 420 / (rows.length - 1)},${135 - r.revenue / max * 105}`).join(' ');
+  document.getElementById('sparkline').innerHTML = `<svg viewBox="0 0 480 170" role="img" aria-label="Monthly revenue for ${escapeText(s.restaurant_name)}"><line x1="40" y1="135" x2="460" y2="135" stroke="#41414c"/><polyline points="${points}" fill="none" stroke="#ff3b30" stroke-width="3"/><text x="40" y="158" fill="#b0b0bb" font-size="12">Jan 2024</text><text x="385" y="158" fill="#b0b0bb" font-size="12">Dec 2025</text><text x="40" y="18" fill="#b0b0bb" font-size="12">Peak ${fmtMoney(Math.max(...rows.map(r => r.revenue)))}</text></svg>`;
+  document.querySelectorAll('#storeRows tr').forEach(r => r.dataset.active = String(Number(r.dataset.store) === s.restaurant_id));
+}
+document.getElementById('storeRows').innerHTML = sorted.map((s, i) => `<tr data-store="${s.restaurant_id}"><td class="position">${String(i + 1).padStart(2, '0')}</td><td><button class="store-link" data-select-store="${s.restaurant_id}">${escapeText(s.restaurant_name)}</button></td><td>${pct(s.operating_margin_pct)}</td><td>${pct(s.labour_cost_pct)}</td><td>${pct(s.waste_pct)}</td><td>${s.satisfaction_score.toFixed(2)}</td><td><span class="score ${s.performance_index < 85 ? 'review' : ''}">${s.performance_index.toFixed(0)}<small>/100</small></span></td></tr>`).join('');
+document.querySelectorAll('[data-select-store]').forEach(b => b.addEventListener('click', () => { store.value = b.dataset.selectStore; updateStore(); }));
+store.addEventListener('change', updateStore);
+updateStore();
+function activateTab(button) {
+  document.querySelectorAll('[data-tab]').forEach(t => { t.setAttribute('aria-selected', t === button ? 'true' : 'false'); t.tabIndex = t === button ? 0 : -1; });
+  document.querySelectorAll('.page').forEach(p => p.hidden = p.id !== button.dataset.tab);
+}
+const tabs = [...document.querySelectorAll('[data-tab]')];
+tabs.forEach((button, index) => {
+  button.tabIndex = index === 0 ? 0 : -1;
+  button.addEventListener('click', () => activateTab(button));
+  button.addEventListener('keydown', event => {
+    let next;
+    if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+    if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = tabs.length - 1;
+    if (next !== undefined) { event.preventDefault(); activateTab(tabs[next]); tabs[next].focus(); }
+  });
+});
+document.getElementById('model').textContent = 'Selected model · ' + data.summary.selected_model;
+document.getElementById('insights').innerHTML = data.insights.map((s, i) => `<article class="panel insight"><div class="number">SIGNAL ${String(i + 1).padStart(2, '0')} / ${escapeText(s.priority.toUpperCase())} PRIORITY</div><h3>${escapeText(s.title)}</h3><p><b>What:</b> ${escapeText(s.what)}</p><p><b>Why:</b> ${escapeText(s.why)}</p><p><b>Impact:</b> ${escapeText(s.impact)}</p><div class="action"><b>Action:</b> ${escapeText(s.action)}</div></article>`).join('');
+</script>
+</body>
+</html>

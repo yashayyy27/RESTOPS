@@ -1,0 +1,160 @@
+[
+  {
+    "dataset": "store_day",
+    "keys": [
+      "restaurant_id",
+      "business_date"
+    ],
+    "grain": "Restaurant/trading date",
+    "source": "Independent source facts aggregated before joining",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "store_hour",
+    "keys": [
+      "restaurant_id",
+      "business_date",
+      "hour"
+    ],
+    "grain": "Restaurant/local date/hour",
+    "source": "Orders; actual and scheduled shifts, breaks allocated uniformly",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "store_month_kpis",
+    "keys": [
+      "restaurant_id",
+      "month"
+    ],
+    "grain": "Restaurant/calendar month",
+    "source": "Daily totals and monthly targets",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "product_month",
+    "keys": [
+      "restaurant_id",
+      "month",
+      "product_id",
+      "channel"
+    ],
+    "grain": "Restaurant/month/product/channel",
+    "source": "Validated product lines; orders_with_product is not additive across products",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "waste_detail",
+    "keys": [
+      "restaurant_id",
+      "business_date",
+      "product_id",
+      "reason"
+    ],
+    "grain": "Restaurant/date/product/waste reason",
+    "source": "Validated waste ledger",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "forecast_daily",
+    "keys": [
+      "restaurant_id",
+      "business_date"
+    ],
+    "grain": "Restaurant/future date at a single origin",
+    "source": "Validation-selected model; origin-date labelled",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "forecast_backtests",
+    "keys": [
+      "restaurant_id",
+      "business_date",
+      "model",
+      "origin_date"
+    ],
+    "grain": "Restaurant/date/model/origin",
+    "source": "Chronological validation and holdout; filter one model before summing",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "forecast_store_metrics",
+    "keys": [
+      "restaurant_id",
+      "evaluation_period",
+      "model"
+    ],
+    "grain": "Restaurant/evaluation/model",
+    "source": "Metrics recomputed from forecast errors; WAPE is 0\u2013100",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "promotion_effectiveness",
+    "keys": [
+      "promotion_id"
+    ],
+    "grain": "Campaign/restaurant",
+    "source": "Observed before/during and eligible location peer comparisons",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "customer_segment_summary",
+    "keys": [
+      "restaurant_id",
+      "segment"
+    ],
+    "grain": "Restaurant/segment at fixed snapshot",
+    "source": "Anonymous IDs; complete lifetime snapshot, not reporting-month activity",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "customer_cohorts",
+    "keys": [
+      "restaurant_id",
+      "cohort_month"
+    ],
+    "grain": "Restaurant/first-observed month",
+    "source": "Full 90-day eligible follow-up; not proven acquisition date",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "loyalty_behaviours",
+    "keys": [
+      "early_activity_band",
+      "early_redemption"
+    ],
+    "grain": "Company activity/redemption group",
+    "source": "Company-wide view unaffected by store selection",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "labour_plan",
+    "keys": [
+      "restaurant_id",
+      "business_date",
+      "hour"
+    ],
+    "grain": "Restaurant/future date/hour/default assumptions",
+    "source": "Derived from pre-origin weekday mix and forecast; repeated schedule template",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "weekly_performance",
+    "keys": [
+      "restaurant_id",
+      "window_end"
+    ],
+    "grain": "Restaurant/rolling seven-day window",
+    "source": "Daily facts and prorated monthly revenue targets",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  },
+  {
+    "dataset": "weekly_management_brief",
+    "keys": [
+      "restaurant_id",
+      "window_end"
+    ],
+    "grain": "Restaurant/rolling seven-day decision",
+    "source": "Calculated component opportunities and proposed pilots",
+    "join_guidance": "Use separate Tableau logical sources. Never join different fact grains on restaurant_id alone; aggregate first. Ratios recalculate from summed numerators/denominators."
+  }
+]

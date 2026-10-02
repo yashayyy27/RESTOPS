@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101014">
+<title>RESTOPS · Executive summary</title>
+<style>
+:root{color-scheme:dark;--bg:#101014;--panel:#19191f;--text:#f4f4f6;--muted:#b0b0bb;--line:#363640;--red:#ff3b30;--cyan:#58d6df;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--cyan);text-underline-offset:4px}:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}.skip{position:absolute;top:-100px;left:20px;z-index:10;background:var(--panel);padding:12px}.skip:focus{top:12px}header{border-top:5px solid var(--red);background:#121216;border-bottom:1px solid var(--line);padding:24px max(5vw,24px) 35px}nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--line);flex-wrap:wrap}.logo{display:flex;align-items:center;gap:13px;color:white;font-size:24px;font-weight:900;font-style:italic;letter-spacing:-1px;text-decoration:none}.mark{width:27px;height:23px;border-top:7px solid var(--red);border-bottom:7px solid var(--red);transform:skew(-24deg)}.nav-links{display:flex;gap:20px;flex-wrap:wrap}.nav-links a{font-size:12px;color:var(--muted);text-decoration:none}.nav-links a[aria-current="page"]{color:var(--red)}.nav-links a:hover{color:white}.eyebrow{text-transform:uppercase;color:var(--red);font:10px/1.6 var(--mono);letter-spacing:1.8px;margin-top:28px}h1{font-size:clamp(38px,5vw,64px);text-transform:uppercase;font-style:italic;font-weight:900;letter-spacing:-2px;line-height:1.1;margin:14px 0}header p{max-width:760px;color:#c5c5ce;margin:14px 0}.meta{font:10px/1.6 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:1px}.toolbar{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:24px}.toolbar a{font-size:12px}.print{background:var(--red);color:#111;border:0;padding:10px 16px;border-radius:3px;font:700 12px inherit;cursor:pointer}
+main{max-width:1400px;margin:auto;padding:28px 5vw 50px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}.stat{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--red);border-radius:3px 18px 3px 3px;padding:20px}.stat-label{font:10px/1.5 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:1px}.value{font-size:clamp(25px,2.7vw,36px);font-weight:800;letter-spacing:-1px;font-variant-numeric:tabular-nums;margin:8px 0 5px;line-height:1.2}.stat-note{font-size:11px;color:var(--muted)}.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px}.contents{align-self:start;position:sticky;top:24px;border-top:2px solid var(--red);padding-top:15px}.contents h2{font:11px var(--mono);text-transform:uppercase;letter-spacing:1px;margin:0 0 16px}.contents ol{padding-left:19px;margin:0}.contents li{padding:0 0 12px 3px;color:var(--red);font-size:12px}.contents a{color:var(--muted);text-decoration:none;line-height:1.5;display:block}.contents a:hover{color:white}.content{background:var(--panel);padding:28px 32px;border:1px solid var(--line);border-radius:3px 18px 3px 3px;min-width:0}.content>:first-child{margin-top:0}.content p{max-width:90ch;color:#c5c5ce;margin:15px 0}.content strong{color:var(--text)}.content h2{font-size:23px;line-height:1.3;letter-spacing:-.5px;border-top:1px solid var(--line);padding-top:28px;margin:32px 0 18px}.content h3{font-size:18px}.content ul{padding-left:22px;color:#c5c5ce}.content li{margin-bottom:10px}.content .action{border-left:3px solid var(--red);background:#242025;padding:14px 18px}.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:3px}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.6}th,td{padding:14px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font:10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.7px;background:#141419}td{min-width:110px;color:#e1e1e7}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#24242c}code{color:var(--cyan);font-size:12px}footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.contents{position:static}.contents ol{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.stats{grid-template-columns:repeat(2,1fr)}main{padding:24px 20px 40px}.content{padding:22px}}
+@media(max-width:500px){.nav-links{gap:12px}.nav-links a{font-size:11px}.stats{gap:10px}.stat{padding:16px 12px}.contents ol{grid-template-columns:1fr}.content{padding:18px}.content h2{font-size:21px}.value{font-size:25px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{:root{color-scheme:light;--bg:white;--panel:white;--text:#111;--muted:#444;--line:#aaa;--red:#b82520;--cyan:#135965}body{font-size:11px}header{background:white;padding:15px 0}nav,.toolbar,.contents{display:none}header p,.content p,.content li,td{color:#222}main{padding:18px 0}.layout{display:block}.content{border:0;padding:0}.stats{grid-template-columns:repeat(4,1fr);gap:8px}.stat{padding:12px}.value{font-size:20px}.content .action{background:#f5f5f5}.table-wrap{overflow:visible}th{background:#eee;color:#333}thead{display:table-header-group}tr{break-inside:avoid}.content h2{break-after:avoid}a{color:#135965}.logo{color:#111}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#report-content">Skip to report</a>
+<header>
+  <nav aria-label="Report navigation"><a class="logo" href="portfolio.html"><span class="mark" aria-hidden="true"></span>RESTOPS</a><div class="nav-links"><a href="executive_summary.html" aria-current="page">Executive summary</a><a href="business_recommendations.html">Action plan</a><a href="data_quality_report.html">Quality audit</a></div></nav>
+  <div class="eyebrow">01 / Management briefing</div>
+  <h1>Executive summary</h1>
+  <p>Eight operational findings: what changed, why it matters, and the next management decision.</p>
+  <div class="meta">Southern Table Hospitality / January 2024–December 2025 / Synthetic case study</div>
+  <div class="toolbar"><a href="portfolio.html">← Performance overview</a><a href="executive_summary.md" download>Download Markdown</a><button class="print" type="button" onclick="window.print()">Print / Save PDF</button></div>
+</header>
+<main>
+  <div class="stats" aria-label="Report highlights"><div class="stat"><div class="stat-label">Net revenue</div><div class="value">A$36,444,594</div><div class="stat-note">Full history · excluding GST</div></div><div class="stat"><div class="stat-label">Operating margin</div><div class="value">12.0%</div><div class="stat-note">All observed operating costs</div></div><div class="stat"><div class="stat-label">Complete orders</div><div class="value">794,925</div><div class="stat-note">After quality validation</div></div><div class="stat"><div class="stat-label">Management findings</div><div class="value">8</div><div class="stat-note">Evidence, impact and action</div></div></div>
+  <div class="layout"><aside class="contents" aria-label="Report contents"><h2>In this report</h2><ol><li><a href="#section-1">Prioritise the weakest store's cost structure</a></li><li><a href="#section-2">Move staffing toward meal peaks</a></li><li><a href="#section-3">Target excess food waste with preparation controls</a></li><li><a href="#section-4">Review the weakest promotion before repeating it</a></li><li><a href="#section-5">Use contribution and margin together in menu decisions</a></li><li><a href="#section-6">Use early activity to prioritise retention experiments</a></li><li><a href="#section-7">Treat service pressure as an experience warning</a></li><li><a href="#section-8">Use evaluated forecasts for four-week planning</a></li></ol></aside><article class="content" id="report-content"><p><strong>Southern Table Hospitality | January 2024–December 2025 | Synthetic portfolio case study</strong></p>
+<p>The validated operation contains 794,925 orders across 18 restaurants. Revenue was A$36,444,594, operating profit A$4,386,880, and operating margin 12.0%.</p>
+<p>These are fictional outcomes. Recommendations are testable management hypotheses; observational estimates do not establish causal business effects.</p>
+<h2 id="section-1">1. Prioritise the weakest store's cost structure</h2>
+<p><strong>What happened:</strong> Wollongong recorded 1.8% operating margin in Q4 versus 11.1% across its location peers.</p>
+<p><strong>Why:</strong> Its labour cost was 46.2% of sales and waste was 7.7%. These are accounting drivers; store and demand differences still matter.</p>
+<p><strong>Business impact:</strong> Q4 operating profit was A$3,965 on A$216,409 sales. A peer-margin gap is an investigation signal, not guaranteed recoverable profit.</p>
+<p class="action"><strong>Recommended action:</strong> Area Manager: review four weeks of rosters and waste logs, then pilot a demand-based roster. Monitor margin and service scores together.</p>
+<h2 id="section-2">2. Move staffing toward meal peaks</h2>
+<p><strong>What happened:</strong> 43.5% of peak-hour observations exceeded modelled service capacity; 65.4% of off-peak observations had spare capacity.</p>
+<p><strong>Why:</strong> Broad shifts spread paid hours across the day while orders concentrate at lunch and dinner. Capacity is an illustrative six orders per service hour, not a measured service standard.</p>
+<p><strong>Business impact:</strong> Peak pressure can affect experience while spare capacity raises cost per order. The exports identify the store, weekday and hour for a roster trial.</p>
+<p class="action"><strong>Recommended action:</strong> Workforce Planning: trial staggered starts and meal-peak overlap at two stores; keep total hours stable initially and compare service outcomes.</p>
+<h2 id="section-3">3. Target excess food waste with preparation controls</h2>
+<p><strong>What happened:</strong> Gold Coast had Q4 waste of 7.8%, versus its location-peer median of 4.3%.</p>
+<p><strong>Why:</strong> The synthetic operation links preparation variability and management efficiency to waste. Product and reason exports support investigation of specific preparation practices.</p>
+<p><strong>Business impact:</strong> Matching the peer rate on the same ingredient-cost base suggests A$3,630 of quarterly waste-cost opportunity; feasibility is untested.</p>
+<p class="action"><strong>Recommended action:</strong> Restaurant Manager: pilot smaller batches and daily waste reason reviews. Track waste cost alongside stock-outs and satisfaction for four weeks.</p>
+<h2 id="section-4">4. Review the weakest promotion before repeating it</h2>
+<p><strong>What happened:</strong> Spring Social produced estimated incremental revenue of A$-56,840 and incremental contribution of A$-210,901 after campaign costs; ROI was -1193%.</p>
+<p><strong>Why:</strong> This summary includes only campaigns with eligible controls; unavailable estimates and their spend are excluded together. Sales uplift must pay for discounts, ingredient costs, commissions, incremental labour and campaign spending. Matched controls provide an imperfect counterfactual.</p>
+<p><strong>Business impact:</strong> Repeating a weak offer can erode contribution despite an attractive sales headline. Campaign-specific confidence ranges may cross zero.</p>
+<p class="action"><strong>Recommended action:</strong> Marketing and Finance: use a randomised store trial to compare a smaller discount or bundle. Make contribution the primary success metric.</p>
+<h2 id="section-5">5. Use contribution and margin together in menu decisions</h2>
+<p><strong>What happened:</strong> Mains generated 63.2% of gross contribution, while Drinks had the highest category ingredient margin.</p>
+<p><strong>Why:</strong> High-volume mains and lower-cost add-ons play different roles. Revenue alone does not capture ingredient economics.</p>
+<p><strong>Business impact:</strong> Menu placement and attachments can improve mix, but gross contribution excludes additional preparation labour and cannibalisation.</p>
+<p class="action"><strong>Recommended action:</strong> Operations and Marketing: test one complementary add-on bundle; evaluate basket contribution, uptake and service time.</p>
+<h2 id="section-6">6. Use early activity to prioritise retention experiments</h2>
+<p><strong>What happened:</strong> Among fully observed customers, 85.7% of those with four or more early visits returned in days 31–90, versus 39.8% with one early visit.</p>
+<p><strong>Why:</strong> Early activity reflects customer preference and opportunity to visit. Redemption comparisons are stratified by activity and cannot establish loyalty causation.</p>
+<p><strong>Business impact:</strong> The eligible identified-customer 90-day repeat rate was 56.3%. Anonymous visitors are outside this denominator.</p>
+<p class="action"><strong>Recommended action:</strong> Loyalty Manager: test a second-visit message with a random holdout among low-activity new members; measure return rate and contribution.</p>
+<h2 id="section-7">7. Treat service pressure as an experience warning</h2>
+<p><strong>What happened:</strong> Controlled service-pressure/satisfaction correlation was -0.25, with an approximate store-bootstrap interval of [-0.31, -0.20].</p>
+<p><strong>Why:</strong> The comparison adjusts for store, weekday, calendar month and order volume. Synthetic staffing mechanisms contribute to the relationship; selective survey responses remain a limitation.</p>
+<p><strong>Business impact:</strong> Service scores provide a guardrail against roster changes that improve labour ratios but overload busy periods.</p>
+<p class="action"><strong>Recommended action:</strong> Area Manager: review pressure and satisfaction together weekly, then evaluate roster pilots with pre-agreed service and cost measures.</p>
+<h2 id="section-8">8. Use evaluated forecasts for four-week planning</h2>
+<p><strong>What happened:</strong> Calendar ridge was selected using validation MAE. Final holdout MAE was A$452 per store-day, RMSE A$587, and MAPE 14.7%.</p>
+<p><strong>Why:</strong> Its holdout MAE improvement over the seasonal naive comparator was 26.1%. Calendar and lag features provide information beyond a repeated weekly pattern when useful.</p>
+<p><strong>Business impact:</strong> The next 28 synthetic planning days total A$1,640,024. Forecast error should be considered before committing labour or stock.</p>
+<p class="action"><strong>Recommended action:</strong> Workforce Planning: combine daily forecasts with each store's observed basket value and hourly mix; revisit weekly and record overrides.</p>
+</article></div>
+  <footer>RESTOPS · All outcomes are fictional. Currency is AUD excluding GST. Estimates support operational testing and do not establish causal effects. Design inspired by motorsport; no affiliation with Formula 1.</footer>
+</main>
+</body>
+</html>
