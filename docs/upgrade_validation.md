@@ -66,7 +66,13 @@ includes independent AppTest sessions; it is not server steady-state memory,
 cloud capacity or multi-user load evidence. The [machine-readable record](../reports/upgrade_validation.json)
 retains test counts and scope. The first clean-copy attempt exposed the audit
 link defect; the corrected fresh copy passed. Nothing is inferred from CI
-configuration alone. Current upgrade publication CI is pending publication.
+configuration alone. The [upgrade GitHub Actions run](https://github.com/yashayyy27/RESTOPS/actions/runs/36984835445) completed successfully on a clean Ubuntu
+runner against `74e9522`. Its public job passed **51 tests** (9.952 seconds,
+420.3 MiB whole-test-process peak RSS), with no raw/full sources present. Its
+analytical job reproduced the fixed-seed pipeline, passed **97 source checks**,
+formatting/compilation and all **66 full-suite tests** (18.531 seconds). Both
+jobs succeeded. Only these evidence records changed after the tested code commit;
+this report does not infer a separate full rerun for that documentation follow-up.
 
 ## Not verified or remaining manual work
 

@@ -43,5 +43,20 @@
   },
   "hosting": "NOT VERIFIED: not published",
   "docker": "NOT VERIFIED: unavailable",
-  "publication_ci": "Pending current upgrade publication"
+  "publication_ci": {
+    "run_id": 36984835445,
+    "url": "https://github.com/yashayyy27/RESTOPS/actions/runs/36984835445",
+    "tested_commit": "74e9522ce0d9c3121e0b5a7e8bbcd3a5c0ba33c1",
+    "conclusion": "success",
+    "runner": "Clean GitHub Ubuntu / Python 3.12.14",
+    "portable_tests": 51,
+    "portable_seconds": 9.952,
+    "portable_peak_test_process_rss_mib": 420.3,
+    "full_suite_tests": 66,
+    "full_suite_seconds": 18.531,
+    "source_checks": 97,
+    "full_pipeline_reproduced": true,
+    "formatting_files_unchanged": 41,
+    "documentation_followup": "Only evidence records changed after the tested implementation commit."
+  }
 }

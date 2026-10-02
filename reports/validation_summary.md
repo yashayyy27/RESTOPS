@@ -12,7 +12,10 @@ resource observations, fixed defects and manual limitations. The
 [earlier publication record](../docs/validation_results.md) retains independent
 notebook execution, Excel inspection and the earlier 39-test GitHub run.
 
-Current upgrade GitHub CI is pending publication. A native Tableau workbook,
+The [upgrade GitHub Actions run](https://github.com/yashayyy27/RESTOPS/actions/runs/36984835445) passed against `74e9522`:
+**51 portable tests**, fixed-seed pipeline reproduction, **97 source checks**,
+formatting/compilation and **66 full-suite tests** on clean Ubuntu. Only evidence
+records changed after that tested implementation commit. A native Tableau workbook,
 public hosted URL and Docker runtime remain **NOT VERIFIED**. The Tableau data
 bundle itself passed 36 checks over 13 sources.
 
