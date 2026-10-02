@@ -10,5 +10,11 @@ Read the [complete actual validation results](../docs/validation_results.md) for
 commands, scope, UAT mapping, numerical examples and remaining acceptance work.
 The [machine-readable test record](test_results.json) records the final local run.
 
-No real-user UAT, stakeholder approval, remote CI execution, native Tableau
-workbook, GitHub publication or achieved operational savings is claimed.
+The project is published at [yashayyy27/RESTOPS](https://github.com/yashayyy27/RESTOPS).
+Its [first GitHub Actions run](https://github.com/yashayyy27/RESTOPS/actions/runs/36970504109)
+passed on a clean Ubuntu runner, including full synthetic-pipeline reproduction
+and all 39 full-suite tests. Local notebook execution and workbook inspection
+remain separate evidence.
+
+No real-user UAT, stakeholder approval, native Tableau workbook or achieved
+operational savings is claimed.

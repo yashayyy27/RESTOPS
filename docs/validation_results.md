@@ -25,7 +25,16 @@ this separate execution was checked by reading the saved notebooks.
 The final full suite ran **39 tests, zero failures, zero errors, zero skips**.
 [Machine-readable test record](../reports/test_results.json) preserves the actual
 execution time, counts and local scope. Black checked 30 Python files unchanged;
-`compileall` passed. GitHub Actions is configured but has not run remotely.
+`compileall` passed.
+
+The public repository is [yashayyy27/RESTOPS](https://github.com/yashayyy27/RESTOPS).
+The [publication workflow run](https://github.com/yashayyy27/RESTOPS/actions/runs/36970504109)
+completed successfully on 2 October 2026 against commit `4d2ffbd`. Its clean
+Ubuntu runner passed formatting/compilation, portable-demo checks, fixed-seed full
+pipeline reproduction and all **39 full-suite tests** (17.601 seconds). These are
+automated developer checks, not real-manager acceptance testing. The saved local
+test JSON remains a separate local record; notebook execution and Excel visual
+inspection were verified locally rather than repeated by CI.
 
 ## Acceptance evidence
 
@@ -40,7 +49,7 @@ execution time, counts and local scope. Black checked 30 Python files unchanged;
 | UAT07 · customers | Eligible follow-up and independently computed repeat rate; full-snapshot/global-scope labels; app execution | Pass for developer evidence; no real retention experiment conducted |
 | UAT08 · quality | Deliberate schema/key/relationship/null/date/money mutations fail; basket quarantine; SQLite integrity and foreign keys; independent ledger SQL; all-view app execution | Pass; demo shows precomputed full-source quality evidence, not a new raw audit |
 | UAT09 · brief | Evidence and impact formula tests; current/prior store/window trace fields; generated Markdown/CSV | Pass; owners and actions are proposals; component opportunities are not additive or committed savings |
-| UAT10 · portable demonstration | AppTest explicitly uses committed demo, all eight views have metrics and computed tables; actual browser screenshots; XLSX OOXML read-back | Pass locally; no clean external machine or remote CI execution claimed |
+| UAT10 · portable demonstration | AppTest explicitly uses committed demo, all eight views have metrics and computed tables; actual browser screenshots; XLSX OOXML read-back; portable-demo and full-suite checks also pass on GitHub Ubuntu runner | Pass for local and remote developer automation; no real-user UAT claimed |
 
 ## Application and exports
 

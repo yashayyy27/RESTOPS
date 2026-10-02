@@ -6,6 +6,8 @@
 
 **Portfolio project by [Yash Hurdale](https://github.com/yashayyy27)** · Master of Business Analytics · Bachelor of Data Science · Assistant Restaurant Manager experience
 
+[![RESTOPS validation](https://github.com/yashayyy27/RESTOPS/actions/workflows/ci.yml/badge.svg)](https://github.com/yashayyy27/RESTOPS/actions/workflows/ci.yml)
+
 18 Australian restaurants · 24 months · **794,925 validated orders** · 2,105,626 product lines
 
 Southern Table Hospitality and every restaurant, employee and customer in this case study are fictional. All results are synthetic. The charcoal/red presentation draws on motorsport performance analysis; it uses no employer or Formula 1 branding.
@@ -23,6 +25,8 @@ RESTOPS connects five questions: **Which restaurant needs attention? What moved?
 Use Python 3.12. From this repository:
 
 ```bash
+git clone https://github.com/yashayyy27/RESTOPS.git
+cd RESTOPS
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-lock.txt
@@ -164,7 +168,7 @@ python -m unittest discover -s tests -p test_promotion.py -v
 python -m unittest discover -s tests -p test_exports.py -v
 ```
 
-GitHub Actions runs formatting, compilation, portable-demo workflows, fixed-seed generation and full tests. Local validation is documented separately from GitHub workflow results. See [validation results](docs/validation_results.md) for actual local evidence.
+GitHub Actions runs formatting, compilation, portable-demo workflows, fixed-seed generation and full tests. The [first publication validation](https://github.com/yashayyy27/RESTOPS/actions/runs/36970504109) passed on a clean Ubuntu runner, including all 39 full-suite tests. See [validation results](docs/validation_results.md) for the scope of local and remote evidence.
 
 ## Repository
 
@@ -191,6 +195,6 @@ opspulse/
 
 Synthetic demand and operational mechanisms shape the results. Two years of history do not establish real-world effectiveness. Promotion controls are imperfect, daily bootstrap intervals ignore serial dependence, customer follow-up is selective, and forecast bands are approximate. Margin excludes tax, financing, depreciation and capital expenditure; loaded wages and simplified holidays/GST are illustrative rather than award/tax advice. Monthly targets are allocated evenly for weekly review; no transaction/mix budget exists to support a causal target-gap decomposition.
 
-Development used AI-assisted coding and documented local validation. Existing commit history is retained; fictional stakeholder needs and proposed experiments are disclosed throughout.
+Development used AI-assisted coding and documented validation. The original development history is retained locally; GitHub records publication snapshots. Fictional stakeholder needs and proposed experiments are disclosed throughout.
 
 RESTOPS is a local, single-user portfolio application, without authentication, production connectors or deployment. The proposed next steps are manager validation of service assumptions, a measured roster/preparation pilot, a randomised promotion trial and native Tableau authoring. These remain proposals, not completed approvals or business results.
