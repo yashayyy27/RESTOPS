@@ -19,13 +19,13 @@ decision support. Financial benefits are conditional estimates, not realised ROI
 ## Scope
 
 Included: 18 synthetic Australian restaurants, 2024–2025 historical data,
-January 2026 forecast continuation, eight local Streamlit workflows, offline
+January 2026 forecast continuation, nine Streamlit workflows with public-session and editable local modes, offline
 reports, SQLite, notebooks, audit and quarantine, Tableau-ready datasets,
-Excel-compatible exports and a small committed demo bundle.
+Excel-compatible exports a small committed demo bundle and append-only action/outcome evidence.
 
 Excluded: confidential employer data, live POS/payroll integrations, native
 Tableau authoring/publication, legally compliant roster construction, employee
-scheduling, production authentication, causal proof and external deployment.
+scheduling, production authentication, causal proof and verified external hosting. Deployment configuration is prepared.
 
 ## Stakeholder needs (fictional)
 
@@ -78,11 +78,27 @@ compare labour cost and peak coverage with a comparable or randomised control,
 record demand differences and monitor satisfaction. For a preparation pilot,
 track waste cost together with stock-outs. For a promotion, evaluate incremental
 contribution after discount and campaign costs. Record baseline, owner, dates,
-intervention and overrides before measuring outcomes. The app does not record
-actual intervention outcomes or claim a completed pilot.
+intervention and overrides before measuring outcomes. The tracker records explicitly simulated or unverified user-entered observations and review notes; it does not claim an executed real pilot.
 
 Related delivery artefacts: [process maps](process_maps.md),
 [traceability matrix](requirements_traceability.md), [backlog](backlog.md),
 [UAT scenarios](uat_scenarios.md), [decision log](decision_log.md),
 [scenario and labour methods](decision_support_methodology.md),
 [interview walkthrough](demo_script.md).
+
+## Decision workflow extension
+
+| ID / priority | User story | Testable acceptance criteria |
+|---|---|---|
+| FR21 / Must | As an Area Manager, I want to save an investigation/scenario as an action. | Selected restaurant/month, reconciled baseline, source fingerprint and six assumptions are frozen; UUID stable after reopen; default state proposed; no outcomes created. |
+| FR22 / Must | As a pilot owner, I want a measurable versioned plan. | Required problem/evidence/intervention/fictional owner, valid pilot/measurement dates, primary metric threshold, service guardrails, comparison and impact basis; revisions append; revised approved/in-progress actions return to proposed. |
+| FR23 / Must | As a reviewer, I want classified outcomes and controlled status transitions. | proposed→approved→in progress→completed; cancellation terminal; completion requires latest full-window review; simulated and user-entered observed input distinct; thresholds/guardrails separately assessed; no causal/guaranteed savings claim. |
+| FR24 / Must | As a public visitor, I want an isolated synthetic demo. | Public wrapper overrides local mode; ignores local data/database paths; sessions share no writable database; seeded example has no approval/outcomes; local mode persists separately. |
+| FR25 / Should | As a Tableau analyst, I want an exact native build handoff. | ZIP has 13 sources, manifest/keys/checks and four-page sheet/calculation instructions; native workbook remains not verified until manual authoring and acceptance. |
+| FR26 / Should | As a recruiter, I want a short evidence-backed introduction. | README opens with problem/three capabilities/actual screenshot, quick start, decision case, scripts and disclosure; internal links/assets checked. |
+
+NFR08: append-only evidence and stale-write protection, verified with SQL trigger,
+reopen, revision and transition tests. NFR09: public defaults fail closed; no
+shared disk state or source overrides, verified across independent sessions.
+See [action model](action_tracker.md), [deployment boundary](deployment.md),
+[current validation](upgrade_validation.md) and [contribution/design choices](design_choices.md).

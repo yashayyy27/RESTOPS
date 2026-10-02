@@ -89,7 +89,7 @@ def render_pages():
             "code": "03",
             "source": "data_quality_report.md",
             "description": "Trace the validation rules, repairs and exclusions behind the restaurant scorecards.",
-            "extra_link": '<a href="exports/data_quality_audit.csv" download>Download audit CSV</a>',
+            "extra_link": '<a href="../data/demo/data_quality_audit.csv.gz" download>Download audit CSV (gzip)</a>',
             "stats": [
                 (
                     "Validated lines",

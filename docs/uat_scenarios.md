@@ -15,8 +15,22 @@ has accepted the system. See [actual validation results](validation_results.md).
 | UAT07 | Loyalty Manager interprets cohorts | Open Customer & loyalty and change restaurant selection | Scoped cohort denominator changes; incomplete follow-up excluded; company-wide behaviour table retains explicit global scope |
 | UAT08 | Analyst audits trust | Open Data quality; inspect missing values and quarantine; verify mutation tests | Optional nulls retained; required/schema/key/date/money defects fail; complete basket quarantine and audit scope visible |
 | UAT09 | Area Manager assigns action | Review a weekly brief entry and export it | Contains current/prior evidence, conditional impact basis, proposed owner, success measure and stable store/window keys |
-| UAT10 | Recruiter runs demo | Clone, install lock, run Streamlit without generating raw data | Committed demo supports all eight workflows; full generation remains available; real screenshots and five-minute script match working features |
+| UAT10 | Recruiter runs demo | Clone, install demo dependencies, run public entry point without generating raw data | Committed demo supports all nine workflows; full generation remains available; real screenshots and five-minute script match working features |
 
 Production UAT would also need manager validation of service rates, award and
 shift constraints, business calendar targets, source completeness and workflow
 fit. These are future tests, not claimed results.
+
+## Proposed action/public acceptance scenarios
+
+| ID | Fictional role | Scenario | Acceptance criterion |
+|---|---|---|---|
+| UAT11 | Area Manager | From December Wollongong investigation, evaluate −1% hours/4% waste and save action | Frozen selected ledger and exact assumptions; proposal only; UUID/export includes period/source |
+| UAT12 | Finance Analyst | Revise scenario/plan, attempt invalid dates and stale edit | Original immutable; new revision appended; invalid inputs rejected; revised approval returns to proposed |
+| UAT13 | Pilot reviewer | Enter labelled simulated result passing labour target but failing satisfaction; then review full window | Commercial/service results separate; no achieved/causal claim; latest full-window review required for completion |
+| UAT14 | Public visitor | Try local overrides; practise action in session A and open independent B | Committed data forced; no shared disk DB; B sees only seeded proposal, no A edits; local mode separately persists |
+| UAT15 | Tableau analyst | Build actual four-page workbook from ZIP and reconcile cards | Native sheets, filters, ratios and acceptance reference verified manually; remains NOT VERIFIED until run |
+| UAT16 | Recruiter | Follow two-minute script and evidence links | Current screens match script; setup works; disclosures visible; no broken links/assets |
+
+Actual developer evidence is recorded in [upgrade validation](upgrade_validation.md).
+These are proposed human acceptance scenarios, not fabricated human testing.

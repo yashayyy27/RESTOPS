@@ -1,0 +1,12 @@
+.git
+.venv*
+node_modules
+outputs
+__pycache__
+data/raw
+data/processed
+data/tableau
+data/validation
+.streamlit/secrets.toml
+.env*
+*.sqlite*

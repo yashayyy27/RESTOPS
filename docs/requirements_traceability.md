@@ -19,3 +19,17 @@ recorded in [validation results](validation_results.md); it is not stakeholder U
 Existing FR01–FR10 remain documented in [business requirements](business_requirements.md).
 The [data dictionary](data_dictionary.md), [KPI definitions](kpi_definitions.md)
 and [Tableau catalogue](tableau_catalog.json) establish the data/metric contracts.
+
+## Decision workflow and public demonstration
+
+| Business need | Requirement | Implementation / data | Verification | UAT |
+|---|---|---|---|---|
+| Carry investigation into action | FR21 | action_views.prepare_action; actions.create; actions/revisions | test_public guided workflow; test_actions snapshot, UUID/reopen | UAT11 |
+| Define success and preserve revisions | FR22, NFR08 | validate_plan; revise; immutable SQLite triggers | required fields/dates/finite values; frozen original; stale revision; reapproval | UAT12 |
+| Measure without inventing benefits | FR23 | observe/review_outcome; append-only events/outcomes | classifications, guardrail failure, full-window completion gate and outcome revision | UAT13 |
+| Safe public demonstration | FR24, NFR09 | runtime/app_data/public wrapper; session memory | conflicting overrides; two-session isolation; local reopen | UAT14 |
+| Honest Tableau completion | FR25 | tableau_bundle + build instructions | 36 data checks; hash/key/financial tests; native workbook pending | UAT15 |
+| Recruiter comprehension | FR26 | README, 2/5-minute scripts, design choices/Q&A | current browser screenshots and automated internal link/asset checks | UAT16 |
+
+These extension requirements are detailed in the [BA pack](ba_delivery_pack.md).
+Automated checks are developer evidence; fictional UAT remains proposed for humans.

@@ -1,0 +1,633 @@
+{
+  "status": "DATA BUNDLE VERIFIED; NATIVE WORKBOOK NOT VERIFIED",
+  "synthetic": true,
+  "history_start": "2025-10-01",
+  "history_end": "2025-12-31",
+  "forecast_origin": "2025-12-31",
+  "forecast_model": "Calendar ridge",
+  "customer_asof": "2025-12-31",
+  "campaign_scope": "Full 2024\u20132025 campaign windows, independent of Oct\u2013Dec reporting filters",
+  "checks": [
+    {
+      "check": "store_dimension: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "store_dimension: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "store_month_kpis: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "store_month_kpis: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "store_day: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "store_day: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "store_hour: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "store_hour: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "product_month: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "product_month: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "customer_segment_summary: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "customer_segment_summary: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "customer_cohorts: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "customer_cohorts: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "promotion_effectiveness: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "promotion_effectiveness: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "forecast_daily: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "forecast_daily: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "forecast_backtests: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "forecast_backtests: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "forecast_plot: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "forecast_plot: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "labour_plan: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "labour_plan: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "weekly_performance: complete unique key",
+      "status": "PASS"
+    },
+    {
+      "check": "weekly_performance: store relationship",
+      "status": "PASS"
+    },
+    {
+      "check": "Monthly revenue reconciles to daily ledger (AUD .01/count exact)",
+      "status": "PASS"
+    },
+    {
+      "check": "Monthly operating_profit reconciles to daily ledger (AUD .01/count exact)",
+      "status": "PASS"
+    },
+    {
+      "check": "Monthly labour_cost reconciles to daily ledger (AUD .01/count exact)",
+      "status": "PASS"
+    },
+    {
+      "check": "Monthly waste_cost reconciles to daily ledger (AUD .01/count exact)",
+      "status": "PASS"
+    },
+    {
+      "check": "Monthly transactions reconciles to daily ledger (AUD .01/count exact)",
+      "status": "PASS"
+    },
+    {
+      "check": "product_month revenue reconciles to daily totals",
+      "status": "PASS"
+    },
+    {
+      "check": "store_hour revenue reconciles to daily totals",
+      "status": "PASS"
+    },
+    {
+      "check": "store_hour paid_hours reconciles to daily totals",
+      "status": "PASS"
+    },
+    {
+      "check": "Every backtest date follows origin",
+      "status": "PASS"
+    },
+    {
+      "check": "Validation dates precede final holdout",
+      "status": "PASS"
+    }
+  ],
+  "sources": [
+    {
+      "file": "data/store_month_kpis.csv",
+      "rows": 54,
+      "keys": [
+        "restaurant_id",
+        "month"
+      ],
+      "sha256": "05aadf90a4797ba92541c51e20744ad9df6e1ec6d15deaac54e44f70be92078f",
+      "columns": {
+        "restaurant_id": "int64",
+        "month": "object",
+        "revenue": "float64",
+        "ingredient_cost": "float64",
+        "transactions": "int64",
+        "discounts": "float64",
+        "identified_orders": "int64",
+        "labour_cost": "float64",
+        "paid_hours": "float64",
+        "service_hours": "float64",
+        "waste_cost": "float64",
+        "score_sum": "float64",
+        "survey_responses": "float64",
+        "commission_cost": "float64",
+        "deliveries": "int64",
+        "late_deliveries": "int64",
+        "overhead_cost": "float64",
+        "campaign_cost": "float64",
+        "operating_profit": "float64",
+        "gross_contribution": "float64",
+        "average_transaction_value": "float64",
+        "gross_margin_pct": "float64",
+        "operating_margin_pct": "float64",
+        "labour_cost_pct": "float64",
+        "sales_per_labour_hour": "float64",
+        "transactions_per_labour_hour": "float64",
+        "waste_pct": "float64",
+        "satisfaction_score": "float64",
+        "identified_order_share": "float64",
+        "late_delivery_pct": "float64",
+        "revenue_target": "float64",
+        "operating_margin_target": "float64",
+        "labour_pct_target": "float64",
+        "waste_pct_target": "float64",
+        "satisfaction_target": "float64",
+        "restaurant_name": "object",
+        "state": "object",
+        "location_type": "object",
+        "area": "object",
+        "timezone": "object",
+        "seats": "int64",
+        "opening_date": "object",
+        "open_hour": "int64",
+        "close_hour": "int64",
+        "revenue_growth_mom": "float64",
+        "revenue_growth_yoy": "float64",
+        "target_achievement_pct": "float64",
+        "score_revenue": "float64",
+        "score_margin": "float64",
+        "score_labour": "float64",
+        "score_waste": "float64",
+        "score_satisfaction": "float64",
+        "index_complete": "bool",
+        "performance_index": "float64"
+      }
+    },
+    {
+      "file": "data/store_day.csv",
+      "rows": 1656,
+      "keys": [
+        "restaurant_id",
+        "business_date"
+      ],
+      "sha256": "ff8ef447be25495fc0f20abd071b1d97a5b9ca1a8f4b7b469b112fad50fb73b5",
+      "columns": {
+        "restaurant_id": "int64",
+        "restaurant_name": "object",
+        "state": "object",
+        "location_type": "object",
+        "area": "object",
+        "timezone": "object",
+        "seats": "int64",
+        "opening_date": "object",
+        "open_hour": "int64",
+        "close_hour": "int64",
+        "business_date": "object",
+        "holiday_name": "object",
+        "is_public_holiday": "int64",
+        "weekday": "int64",
+        "is_weekend": "int64",
+        "month": "object",
+        "season": "object",
+        "school_holiday_proxy": "int64",
+        "revenue": "float64",
+        "ingredient_cost": "float64",
+        "transactions": "int64",
+        "discounts": "float64",
+        "identified_orders": "int64",
+        "labour_cost": "float64",
+        "paid_hours": "float64",
+        "service_hours": "float64",
+        "waste_cost": "float64",
+        "score_sum": "float64",
+        "survey_responses": "float64",
+        "commission_cost": "float64",
+        "deliveries": "int64",
+        "late_deliveries": "int64",
+        "monthly_overheads": "float64",
+        "overhead_cost": "float64",
+        "campaign_cost": "float64",
+        "promotion_id": "object",
+        "operating_profit": "float64",
+        "satisfaction_score": "float64"
+      }
+    },
+    {
+      "file": "data/store_hour.csv",
+      "rows": 18216,
+      "keys": [
+        "restaurant_id",
+        "business_date",
+        "hour"
+      ],
+      "sha256": "abb3c77bc818ded3ecf449b0009f632c865ad934b2cbfa92c150b2cf44a42bb1",
+      "columns": {
+        "restaurant_id": "int64",
+        "restaurant_name": "object",
+        "state": "object",
+        "area": "object",
+        "business_date": "object",
+        "hour": "int64",
+        "transactions": "float64",
+        "revenue": "float64",
+        "paid_hours": "float64",
+        "service_hours": "float64",
+        "labour_cost": "float64",
+        "service_capacity_orders": "float64",
+        "capacity_gap_orders": "float64",
+        "staffing_status": "object",
+        "weekday": "int64",
+        "daypart": "object",
+        "scheduled_paid_hours": "float64",
+        "scheduled_service_hours": "float64"
+      }
+    },
+    {
+      "file": "data/product_month.csv",
+      "rows": 3888,
+      "keys": [
+        "restaurant_id",
+        "month",
+        "product_id",
+        "channel"
+      ],
+      "sha256": "a79926a163340c2e8060de0f3046f5fb6c3097d0ae6b252b671d2a8eb8cab735",
+      "columns": {
+        "restaurant_id": "int64",
+        "month": "object",
+        "product_id": "int64",
+        "channel": "object",
+        "revenue": "float64",
+        "ingredient_cost": "float64",
+        "list_revenue": "float64",
+        "discount_amount": "float64",
+        "units": "int64",
+        "orders_with_product": "int64",
+        "product_name": "object",
+        "category": "object",
+        "menu_price_ex_gst": "int64",
+        "standard_ingredient_cost": "float64",
+        "gross_contribution": "float64"
+      }
+    },
+    {
+      "file": "data/customer_segment_summary.csv",
+      "rows": 90,
+      "keys": [
+        "restaurant_id",
+        "segment"
+      ],
+      "sha256": "49b29f691c2cc20b927ef987628f85d7cc45e742df4dbdda2db95d5b17a5712d",
+      "columns": {
+        "restaurant_id": "int64",
+        "segment": "object",
+        "customers": "int64",
+        "spend": "float64",
+        "visits": "int64",
+        "eligible_customers": "int64",
+        "repeat_customers": "float64"
+      }
+    },
+    {
+      "file": "data/customer_cohorts.csv",
+      "rows": 431,
+      "keys": [
+        "restaurant_id",
+        "cohort_month"
+      ],
+      "sha256": "9637f1d35c12f12f180b88dcbb9b4be0745bd990ead11d31edda8871d656d846",
+      "columns": {
+        "restaurant_id": "int64",
+        "cohort_month": "object",
+        "identified_customers": "int64",
+        "eligible_customers": "int64",
+        "repeat_customers": "float64",
+        "repeat_customer_rate": "float64"
+      }
+    },
+    {
+      "file": "data/promotion_effectiveness.csv",
+      "rows": 108,
+      "keys": [
+        "promotion_id"
+      ],
+      "sha256": "d65d353428264c1ce4c2db425b140c6a7c1461544f7d64ad08d4eb278575b9b7",
+      "columns": {
+        "promotion_id": "object",
+        "restaurant_id": "int64",
+        "campaign_name": "object",
+        "discount_rate": "float64",
+        "start_date": "object",
+        "end_date": "object",
+        "control_stores": "int64",
+        "control_restaurant_ids": "object",
+        "comparison_start": "object",
+        "baseline_revenue": "float64",
+        "observed_revenue": "float64",
+        "incremental_revenue": "float64",
+        "baseline_orders": "float64",
+        "observed_orders": "float64",
+        "incremental_orders": "float64",
+        "campaign_cost": "int64",
+        "incremental_contribution": "float64",
+        "baseline_variable_cost": "float64",
+        "observed_variable_cost": "float64",
+        "incremental_variable_cost": "float64",
+        "incremental_labour_cost": "float64",
+        "contribution_before_campaign": "float64",
+        "promotion_roi": "float64",
+        "contribution_low95": "float64",
+        "contribution_high95": "float64",
+        "estimate_status": "object"
+      }
+    },
+    {
+      "file": "data/forecast_daily.csv",
+      "rows": 504,
+      "keys": [
+        "restaurant_id",
+        "business_date"
+      ],
+      "sha256": "26cf5b47bd51b0f2abe5e57ff9ea1bb069ebbf823d651ad176994860a5b79e1c",
+      "columns": {
+        "restaurant_id": "int64",
+        "business_date": "object",
+        "horizon_day": "int64",
+        "forecast_revenue": "float64",
+        "model": "object",
+        "origin_date": "object",
+        "lower_80": "float64",
+        "upper_80": "float64",
+        "restaurant_name": "object",
+        "state": "object",
+        "area": "object",
+        "forecast_type": "object"
+      }
+    },
+    {
+      "file": "data/forecast_backtests.csv",
+      "rows": 6048,
+      "keys": [
+        "restaurant_id",
+        "business_date",
+        "model",
+        "origin_date"
+      ],
+      "sha256": "8be0676c676bedf0a056f0399726b700a87b4a8bad1083615c8d3a1220218881",
+      "columns": {
+        "restaurant_id": "int64",
+        "business_date": "object",
+        "horizon_day": "int64",
+        "forecast_revenue": "float64",
+        "model": "object",
+        "origin_date": "object",
+        "actual_revenue": "float64",
+        "evaluation_period": "object",
+        "fold": "int64",
+        "lower_80": "float64",
+        "upper_80": "float64"
+      }
+    },
+    {
+      "file": "data/store_dimension.csv",
+      "rows": 18,
+      "keys": [
+        "restaurant_id"
+      ],
+      "sha256": "eb022afa85fa15e3b9bb5669a0b1703ce2871a5829d4cd64a2e492dee78dd224",
+      "columns": {
+        "restaurant_id": "int64",
+        "restaurant_name": "object",
+        "state": "object",
+        "area": "object",
+        "location_type": "object"
+      }
+    },
+    {
+      "file": "data/labour_plan.csv",
+      "rows": 5544,
+      "keys": [
+        "restaurant_id",
+        "business_date",
+        "hour"
+      ],
+      "sha256": "99f3c800cbc4706c66072f5cf169dfd83b7e06b0592e49bb42a26aa8ccf136a6",
+      "columns": {
+        "restaurant_id": "int64",
+        "business_date": "object",
+        "horizon_day": "int64",
+        "forecast_revenue": "float64",
+        "model": "object",
+        "origin_date": "object",
+        "lower_80": "float64",
+        "upper_80": "float64",
+        "restaurant_name": "object",
+        "state": "object",
+        "area": "object",
+        "forecast_type": "object",
+        "weekday": "int32",
+        "hour": "int64",
+        "historical_orders": "float64",
+        "scheduled_service_hours": "float64",
+        "scheduled_paid_hours": "float64",
+        "historical_total_hours": "float64",
+        "historical_service_hours": "float64",
+        "observations": "int64",
+        "hour_share": "float64",
+        "reference_atv": "float64",
+        "support_hours": "float64",
+        "forecast_orders": "float64",
+        "orders_lower": "float64",
+        "orders_upper": "float64",
+        "suggested_service_hours": "float64",
+        "service_hours_lower": "float64",
+        "service_hours_upper": "float64",
+        "suggested_paid_hours": "float64",
+        "service_gap_hours": "float64",
+        "planning_status": "object",
+        "suggested_labour_cost": "float64",
+        "template_labour_cost": "float64",
+        "budget_difference": "float64",
+        "schedule_basis": "object",
+        "orders_per_service_hour": "float64",
+        "utilisation": "float64",
+        "minimum_service_staff": "int64",
+        "schedule_multiplier": "float64",
+        "demand_multiplier": "float64",
+        "loaded_hourly_wage": "float64"
+      }
+    },
+    {
+      "file": "data/weekly_performance.csv",
+      "rows": 18,
+      "keys": [
+        "restaurant_id",
+        "window_end"
+      ],
+      "sha256": "0c5adfab1e4333a7b28cfbad2a72dffbe2da067cc2d566fa65ace3417f17c18a",
+      "columns": {
+        "restaurant_id": "int64",
+        "revenue": "float64",
+        "ingredient_cost": "float64",
+        "transactions": "int64",
+        "discounts": "float64",
+        "identified_orders": "int64",
+        "labour_cost": "float64",
+        "paid_hours": "float64",
+        "service_hours": "float64",
+        "waste_cost": "float64",
+        "score_sum": "float64",
+        "survey_responses": "float64",
+        "commission_cost": "float64",
+        "deliveries": "int64",
+        "late_deliveries": "int64",
+        "overhead_cost": "float64",
+        "campaign_cost": "float64",
+        "operating_profit": "float64",
+        "allocated_revenue_target": "float64",
+        "gross_contribution": "float64",
+        "average_transaction_value": "float64",
+        "gross_margin_pct": "float64",
+        "operating_margin_pct": "float64",
+        "labour_cost_pct": "float64",
+        "sales_per_labour_hour": "float64",
+        "transactions_per_labour_hour": "float64",
+        "waste_pct": "float64",
+        "satisfaction_score": "float64",
+        "identified_order_share": "float64",
+        "late_delivery_pct": "float64",
+        "restaurant_name": "object",
+        "state": "object",
+        "area": "object",
+        "window_start": "object",
+        "window_end": "object",
+        "period": "object",
+        "prior_revenue": "float64",
+        "prior_ingredient_cost": "float64",
+        "prior_transactions": "int64",
+        "prior_discounts": "float64",
+        "prior_identified_orders": "int64",
+        "prior_labour_cost": "float64",
+        "prior_paid_hours": "float64",
+        "prior_service_hours": "float64",
+        "prior_waste_cost": "float64",
+        "prior_score_sum": "float64",
+        "prior_survey_responses": "float64",
+        "prior_commission_cost": "float64",
+        "prior_deliveries": "int64",
+        "prior_late_deliveries": "int64",
+        "prior_overhead_cost": "float64",
+        "prior_campaign_cost": "float64",
+        "prior_operating_profit": "float64",
+        "prior_allocated_revenue_target": "float64",
+        "prior_gross_contribution": "float64",
+        "prior_average_transaction_value": "float64",
+        "prior_gross_margin_pct": "float64",
+        "prior_operating_margin_pct": "float64",
+        "prior_labour_cost_pct": "float64",
+        "prior_sales_per_labour_hour": "float64",
+        "prior_transactions_per_labour_hour": "float64",
+        "prior_waste_pct": "float64",
+        "prior_satisfaction_score": "float64",
+        "prior_identified_order_share": "float64",
+        "prior_late_delivery_pct": "float64",
+        "prior_restaurant_name": "object",
+        "prior_state": "object",
+        "prior_area": "object",
+        "prior_window_start": "object",
+        "prior_window_end": "object",
+        "prior_period": "object",
+        "revenue_change": "float64",
+        "profit_change": "float64",
+        "revenue_growth": "float64",
+        "target_gap": "float64",
+        "target_achievement_pct": "float64"
+      }
+    },
+    {
+      "file": "data/forecast_plot.csv",
+      "rows": 2160,
+      "keys": [
+        "restaurant_id",
+        "business_date"
+      ],
+      "sha256": "9fa7e23d1e525e6904404d5c309fae7db7b85547b37e16256eed095ddbed333a",
+      "columns": {
+        "restaurant_id": "int64",
+        "business_date": "object",
+        "revenue": "float64",
+        "record_kind": "object",
+        "lower_80": "float64",
+        "upper_80": "float64"
+      }
+    }
+  ],
+  "acceptance_reference": {
+    "restaurant": "Wollongong",
+    "month": "2025-12",
+    "revenue": 75110.17,
+    "operating_profit": 2991.61000014,
+    "transactions": 1608.0,
+    "labour_cost": 34738.2,
+    "labour_cost_pct": 0.46249662,
+    "waste_pct": 0.07061926,
+    "satisfaction_score": 3.94074074,
+    "target_achievement_pct": 0.99270507
+  }
+}

@@ -62,3 +62,11 @@ Rebuild analytical inputs with `python -m src.run_pipeline --regenerate
 with an available `@oai/artifact-tool` runtime, after `python -m
 src.excel_inputs`. Core Python reproduction and current-selection CSV downloads
 do not depend on that optional authoring runtime.
+
+## Minimal verified build handoff
+
+[Build ZIP](../dashboards/tableau_build/restops_tableau_bundle.zip) provides 13
+sources, checks/hashes, exact relationships/calculations, sheet placements and
+four-page assembly instructions. [Native checklist](../dashboards/tableau_build/verification_checklist.md)
+remains NOT VERIFIED. `python -m src.tableau_bundle` regenerates this small handoff
+from committed demo data. Source checks are not native Tableau validation.

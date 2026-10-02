@@ -16,3 +16,12 @@ reports/source_manifest.json
 outputs/
 node_modules/
 node_modules
+.streamlit/secrets.toml
+.env
+.env.*
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+.venv-analytics/
+*.sqlite-journal

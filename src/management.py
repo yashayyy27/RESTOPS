@@ -51,7 +51,7 @@ def profit_bridge(before, after):
     ]
     result = pd.DataFrame(rows)
     expected = after["operating_profit"] - before["operating_profit"]
-    if not np.isclose(result.amount.sum(), expected, atol=0.01):
+    if not np.isclose(result.amount.sum(), expected, atol=0.01, rtol=0):
         raise ValueError("Profit bridge does not reconcile to the ledger")
     return result
 

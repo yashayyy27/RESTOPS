@@ -1,0 +1,5 @@
+numpy==2.2.6
+pandas==2.3.3
+plotly==6.9.0
+streamlit==1.64.0
+protobuf==5.29.6

@@ -22,3 +22,18 @@
 | D17 | Reset scenario assumptions when restaurant, month or data mode changes | Prevent assumptions attached to one observed baseline from silently applying to another |
 
 This log records implementation decisions, not stakeholder approvals.
+
+## 2 October 2026 · recruiter workflow upgrade
+
+- Keep existing financial/methodology modules; fix cent tolerance and key coverage
+  rather than replace reconciled analysis.
+- Freeze baseline/source; append plan/scenario revisions and observations. Require
+  new fictional approval after a substantive revision and full-window review for completion.
+- Default public mode, force committed data and per-session memory; editable local
+  SQLite requires explicit RESTOPS_MODE=local. No shared writable public database.
+- Remove unused forecast import from UI so precomputed forecast display requires
+  no scikit-learn/Jupyter. Separate small demo dependencies from full analysis lock.
+- Native Tableau unavailable: deliver verified data + exact build/acceptance instructions,
+  retain not-verified native status. Do not fabricate workbook/screenshots.
+- Keep AI-assisted development, fictional role/UAT and synthetic-data disclosures.
+  Prepare hosting before seeking publishing approval; do not invent a live URL.

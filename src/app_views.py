@@ -10,7 +10,7 @@ import streamlit as st
 
 from .app_data import export_csv
 from .common import REPORTS, ROOT
-from .forecasting import metrics
+from .action_views import navigate, prepare_action, tracker
 from .management import (
     COSTS,
     aggregate,
@@ -31,6 +31,7 @@ VIEWS = [
     "Forecasting",
     "Profit scenario simulator",
     "Data quality",
+    "Action & experiment tracker",
 ]
 COLOURS = ["#ff3b30", "#58d6df", "#ffc16a", "#b0b0bb"]
 
@@ -58,6 +59,35 @@ def table(frame, name, caption=None):
     if caption:
         st.caption(caption)
     pretty = frame.copy()
+    if name == "scenario_comparison":
+        currencies = {
+            "revenue",
+            "cogs",
+            "labour_cost",
+            "commission_cost",
+            "campaign_cost",
+            "overhead_cost",
+            "operating_contribution",
+            "operating_profit",
+            "break_even_revenue",
+        }
+        for key in ("baseline", "scenario", "delta"):
+            pretty[key] = pretty.apply(
+                lambda row: (
+                    "Unavailable"
+                    if not np.isfinite(row[key])
+                    else (
+                        f"{row[key]:.1%}"
+                        if row.metric.endswith("_pct")
+                        else (
+                            money(row[key])
+                            if row.metric in currencies
+                            else f"{row[key]:,.1f}"
+                        )
+                    )
+                ),
+                axis=1,
+            )
     for field in pretty.select_dtypes(include="number"):
         if field.endswith("_pct") or field in [
             "promotion_roi",
@@ -91,9 +121,16 @@ def focus(daily, ids):
     )
     names = stores.restaurant_name.tolist()
     default = names.index("Wollongong") if "Wollongong" in names else 0
+    preferred = st.session_state.pop("preferred_store", None)
+    if preferred in names:
+        default = names.index(preferred)
+        st.session_state.pop("focus_store", None)
     name = st.selectbox(
         "Investigate restaurant", names, index=default, key="focus_store"
     )
+    if name is None:
+        st.info("Choose a restaurant to continue this investigation.")
+        return None
     return int(stores.loc[stores.restaurant_name.eq(name), "restaurant_id"].iloc[0])
 
 
@@ -214,6 +251,8 @@ def executive(f, meta, ids, month):
 
 def investigation(f, meta, ids, month):
     sid = focus(f["store_day"], ids)
+    if sid is None:
+        return
     daily = selected(f["store_day"], [sid])
     current = daily[daily.month.eq(month)]
     if current.empty:
@@ -221,6 +260,27 @@ def investigation(f, meta, ids, month):
         return
     after = aggregate(current)
     kpi_row(after)
+    st.button(
+        "Evaluate a profit scenario",
+        on_click=navigate,
+        args=("Profit scenario simulator",),
+        key="investigate_scenario",
+    )
+    st.button(
+        "Prepare action from this investigation",
+        on_click=prepare_action,
+        args=(
+            sid,
+            current.restaurant_name.iloc[0],
+            month,
+            after,
+            Scenario(),
+            current,
+            "Restaurant investigation",
+        ),
+        key="investigate_action",
+        help="Saves a draft with unchanged operating assumptions. Adjust a scenario first to save different assumptions.",
+    )
     target = (
         f["store_month_kpis"]
         .loc[
@@ -330,6 +390,8 @@ def investigation(f, meta, ids, month):
 def labour(f, meta, ids, month):
     st.write("What hourly coverage does forecast demand imply, and what would it cost?")
     sid = focus(f["store_day"], ids)
+    if sid is None:
+        return
     with st.expander("Productivity, service and budget assumptions", expanded=True):
         c1, c2, c3 = st.columns(3)
         productivity = c1.number_input(
@@ -505,6 +567,11 @@ def promotions(f, meta, ids, month):
         "Campaign results retain their own full before/during periods. Reporting-month selection does not truncate a campaign. Controls exclude promoted location peers in either window; fixed overheads are assumed unchanged."
     )
     labels = data.promotion_id + " · " + data.campaign_name + " · " + data.start_date
+    if data.empty:
+        st.info(
+            "No campaigns exist for the selected restaurants. Choose a different restaurant selection."
+        )
+        return
     chosen = st.selectbox("Campaign", labels.tolist(), key="campaign")
     row = data.loc[labels.eq(chosen)].iloc[0]
     if row.estimate_status == "No eligible control stores":
@@ -574,6 +641,8 @@ def forecasting(f, meta, ids, month):
         "What sales should managers expect over the next four weeks, and how much error should they allow?"
     )
     sid = focus(f["store_day"], ids)
+    if sid is None:
+        return
     evaluation = f["forecast_store_metrics"][
         f["forecast_store_metrics"].restaurant_id.eq(sid)
     ]
@@ -676,6 +745,8 @@ def scenario(f, meta, ids, month):
         "What could a proposed operating change do to profit under explicit assumptions?"
     )
     sid = focus(f["store_day"], ids)
+    if sid is None:
+        return
     baseline = aggregate(selected(f["store_day"], [sid], month))
     base = simulate(baseline)
     context = (sid, month, meta["mode"])
@@ -745,6 +816,22 @@ def scenario(f, meta, ids, month):
         "Break-even revenue",
         money(after["break_even_revenue"]),
         help="At this staffing level: fixed labour, overheads and campaign spending / unit contribution; variable ingredients, waste and commission per order stay constant",
+    )
+    rows = selected(f["store_day"], [sid], month)
+    st.button(
+        "Prepare action from this scenario",
+        on_click=prepare_action,
+        args=(
+            sid,
+            rows.restaurant_name.iloc[0],
+            month,
+            baseline,
+            assumptions,
+            rows,
+            "Profit scenario simulator",
+        ),
+        key="scenario_action",
+        help="Freeze this baseline and these six assumptions into an editable proposal draft.",
     )
     comparison = compare(baseline, assumptions)
     wanted = [
@@ -866,6 +953,7 @@ FUNCTIONS = dict(
             forecasting,
             scenario,
             quality,
+            tracker,
         ],
     )
 )

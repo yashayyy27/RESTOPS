@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-02",
+  "scope": "Developer automation and agent browser verification; fictional case study, no real-manager UAT",
+  "full_suite": {
+    "tests": 66,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 20.615
+  },
+  "portable_clean_copy": {
+    "scope": "Portable demo-only developer automation; no raw/full datasets required",
+    "python": "3.12.14",
+    "platform": "macOS-26.3-arm64-arm-64bit",
+    "tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 5.996,
+    "peak_test_process_rss_mib": 348.1,
+    "memory_boundary": "Peak whole test-process RSS, including independent AppTest sessions; not cloud multi-user capacity or server steady-state memory",
+    "raw_sources_present": false,
+    "full_marts_present": false,
+    "patterns": [
+      "test_app.py",
+      "test_actions.py",
+      "test_public.py",
+      "test_management.py",
+      "test_planning.py",
+      "test_exports.py",
+      "test_tableau_bundle.py",
+      "test_links.py"
+    ]
+  },
+  "source_validation": {
+    "checks": 97,
+    "failures": 0
+  },
+  "tableau_data_bundle": {
+    "sources": 13,
+    "checks": 36,
+    "native_workbook": "NOT VERIFIED"
+  },
+  "hosting": "NOT VERIFIED: not published",
+  "docker": "NOT VERIFIED: unavailable",
+  "publication_ci": "Pending current upgrade publication"
+}

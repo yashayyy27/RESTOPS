@@ -26,3 +26,16 @@ synthetic data. Financial rates recalculate from additive sums.
 The brief prioritises stores missing the allocated revenue target or operating
 below a 10% margin, then proposes investigation. This 10% review threshold is an
 analyst assumption for the case study, not an agreed stakeholder standard.
+
+## Action measurement fields
+
+Action primary targets use explicit metric units and direction: labour/waste share
+lower; margin/profit/revenue/satisfaction higher. Compare entered value to the
+revision's recorded absolute target, not a re-estimated target. Satisfaction floor
+and maximum late-delivery share are separate guardrails. `window_complete` means
+observation dates exactly span the measurement window; only a reviewed full-window
+record on the latest revision can complete an action. Currency thresholds refer
+to that window's total; unequal-duration baseline totals require normalisation.
+Scenario profit delta is same-baseline-duration estimate, never achieved savings.
+No cross-action sum of opportunities is reported. User-entered outcomes are unverified;
+threshold results are not causal impact estimates. See [tracker](action_tracker.md).

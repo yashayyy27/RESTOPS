@@ -25,7 +25,7 @@ class AppWorkflowTests(unittest.TestCase):
     def clean(self):
         self.assertFalse(self.app.exception, [e.message for e in self.app.exception])
 
-    def test_all_eight_views_have_computed_outputs(self):
+    def test_all_views_have_computed_outputs(self):
         for name in VIEWS:
             with self.subTest(view=name):
                 self.app.selectbox(key="view").select(name).run()
@@ -49,6 +49,30 @@ class AppWorkflowTests(unittest.TestCase):
         self.clean()
         self.assertNotEqual(self.app.metric[1].value, before)
         self.assertIn("A$", self.app.metric[1].delta)
+
+    def test_cleared_focus_does_not_crash_workflows(self):
+        for view in (
+            "Restaurant investigation",
+            "Profit scenario simulator",
+            "Labour & demand planning",
+            "Forecasting",
+        ):
+            with self.subTest(view=view):
+                self.app.selectbox(key="view").select(view).run()
+                self.app.selectbox(key="focus_store").select(None).run()
+                self.clean()
+                # Streamlit may restore its configured default on clear.
+                value = self.app.selectbox(key="focus_store").value
+                self.assertIn(value, [None, "Wollongong"])
+                if value is None:
+                    self.assertTrue(
+                        any(
+                            "Choose a restaurant" in info.value
+                            for info in self.app.info
+                        )
+                    )
+                else:
+                    self.assertTrue(self.app.metric)
 
     def test_labour_productivity_changes_hours(self):
         self.app.selectbox(key="view").select("Labour & demand planning").run()

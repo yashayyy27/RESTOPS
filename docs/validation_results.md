@@ -1,4 +1,7 @@
-# Actual validation results
+# Earlier publication validation results
+
+For the current nine-view/action-tracker upgrade, see [current validation](upgrade_validation.md).
+This page preserves the earlier eight-view publication evidence.
 
 **Local developer automation and agent browser verification, 2 October 2026.**
 Fictional stakeholders and UAT scenarios have not been run or accepted by real

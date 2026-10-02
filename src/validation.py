@@ -137,6 +137,25 @@ def file_hash(path):
     return digest.hexdigest()
 
 
+def revenue_reconciliation(ledger, monthly):
+    """Reject unmatched keys and absolute-cent differences at any sales scale."""
+    keys = ["restaurant_id", "month"]
+    joined = ledger[keys + ["revenue"]].merge(
+        monthly[keys + ["revenue"]],
+        on=keys,
+        how="outer",
+        suffixes=("_sql", "_python"),
+        validate="one_to_one",
+        indicator=True,
+    )
+    return joined._merge.ne("both") | ~np.isclose(
+        joined.revenue_sql,
+        joined.revenue_python,
+        atol=0.01,
+        rtol=0,
+    )
+
+
 def run():
     """Audit processed sources and independent SQLite financial reconciliation."""
     checks, missing, manifest = [], [], []
@@ -180,13 +199,7 @@ def run():
         integrity = db.execute("PRAGMA integrity_check").fetchone()[0]
         ledger = pd.read_sql_query((ROOT / "sql/kpi_queries.sql").read_text(), db)
     monthly = read("store_month_kpis")
-    joined = ledger.merge(
-        monthly,
-        on=["restaurant_id", "month"],
-        suffixes=("_sql", "_python"),
-        validate="one_to_one",
-    )
-    mismatch = ~np.isclose(joined.revenue_sql, joined.revenue_python, atol=0.01)
+    mismatch = revenue_reconciliation(ledger, monthly)
     daily = read("store_day")
     bridge_error = (
         (daily.revenue - daily[COSTS].sum(axis=1) - daily.operating_profit)

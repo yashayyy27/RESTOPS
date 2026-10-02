@@ -24,3 +24,15 @@ Definition of done: calculation answers a named decision, assumptions/grain are
 documented, relevant tests pass, UI has usable outputs and limitations, and
 traceability/UAT records reflect actual validation. Implementation status alone
 does not imply stakeholder acceptance.
+
+## Recruiter workflow upgrade
+
+| Priority | Item | Status / evidence |
+|---|---|---|
+| Must | Frozen action/scenario snapshots, revision/status/outcome evidence | Implemented; action and public workflow tests |
+| Must | Public session isolation and portable dependency set | Implemented; independent sessions, clean checkout and runtime checks |
+| Must | Strict absolute-cent and complete-key reconciliation | Fixed; large-value drift and missing-key regression tests |
+| Should | Concise recruiter README, scripts, Q&A and contribution disclosure | Implemented; current screenshots and link checks |
+| Should | Native Tableau build bundle | Data/instructions delivered; native authoring and verification still manual |
+| Should | Public hosting | Prepared and locally tested; awaiting publishing approval/account access |
+| Later | Real-manager UAT and controlled operational pilot | Not conducted; synthetic portfolio has no achieved benefit claims |

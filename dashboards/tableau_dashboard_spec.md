@@ -182,6 +182,9 @@ Scenario Operating Profit = [Scenario Revenue] - [Scenario COGS] - [Scenario Lab
 ```
 
 Add explicit denominator checks: `IF SUM([denominator]) = 0 THEN NULL ELSE ... END`.
+For aggregate promotion ROI, filter both numerator and campaign-cost denominator
+to campaigns with an available estimate. Missing controls must not dilute ROI
+with unestimated spending; the exact minimal-build calculation records this filter.
 For MAPE, return null for zero actuals before averaging. Forecast KPI sources
 store percentage metrics in 0–100 units, whereas the ratio calculations above
 return 0–1 and use percentage formatting. Do not average fold/store MAPE without
@@ -208,3 +211,13 @@ Capture four native workbook screenshots into `dashboards/screenshots/`:
 `executive.png`, `operations.png`, `customers.png`, `forecasting.png`.
 README placeholders deliberately remain until these screenshots exist. The
 offline HTML overview is a separate portfolio preview, not a Tableau screenshot.
+
+## Executable manual build handoff
+
+Use [BUILD.md](tableau_build/BUILD.md) and the packaged ZIP for exact source,
+relationship, calculation, shelf and filter instructions. The minimal bundle
+covers October–December historical finance, full labelled customer/campaign
+snapshots and January forecasts. It excludes native scenario/action persistence,
+YoY worksheets and full customer-ID worklists. These optional specification items
+must not be implied to exist in a native workbook. Data bundle is verified;
+native authoring, filters, screenshots and publication remain NOT VERIFIED.

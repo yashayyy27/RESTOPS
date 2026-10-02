@@ -1,76 +1,67 @@
 # Five-minute interview demonstration
 
-Use `python -m streamlit run streamlit_app.py`, Dataset **Demo**, all restaurants,
-reporting month **2025-12**. The app demonstrates a fictional Australian chain.
-Choose Wollongong for investigation, planning, forecasting and scenarios.
+Python 3.12; public entry point `deployment/streamlit_app.py`; December 2025,
+all stores; Wollongong focus. Choose **Start here → Open Wollongong investigation**.
+For durable practice actions choose local mode as described in [setup](setup.md).
 
-## 0:00–0:40 · Business framing
+## 0:00–0:35 · Frame the business decision
 
-“My restaurant management experience helped me frame the operational decisions.
-RESTOPS connects sales, labour, waste and customer experience to contribution.
-The data is entirely synthetic. I used my Business Analytics and Data Science
-background to translate those questions into requirements, data contracts and
-tested analysis. I am demonstrating proposed decisions, not real business savings.”
+“My restaurant management experience informs the decisions: a sales headline
+cannot tell an Area Manager what to change. I connected finance, demand, labour,
+waste and customers to an investigation and proposed-pilot workflow. This is
+entirely synthetic, not an employer implementation or achieved benefits claim.”
 
-Show Executive overview. Explain the difference between revenue and profit,
-the selected month and the latest seven-day attention queue. Open one brief entry
-to show evidence, a proposed owner and a success measure.
+Briefly show the attention queue, reporting period and synthetic notice.
 
-## 0:40–1:40 · Investigate recorded performance
+## 0:35–1:30 · Investigate Wollongong
 
-Open Restaurant investigation and select Wollongong. Show the revenue target
-gap and December/November profit bridge. Explain that order volume and net basket
-value reconcile the revenue movement and six cost changes reconcile profit.
-Inspect product/category contribution and waste reasons. State that these are
-observed financial drivers, while an operational explanation needs a pilot.
+Revenue A$75,110, profit A$2,992 and margin 4.0% in December. Show target gap and
+November/December bridge. Volume and net basket reconcile revenue; six cost
+movements reconcile profit to a cent. Explain interaction allocation to basket.
+Product mix and waste reasons are supporting diagnostics, not extra additive
+bridge components. The explanation is accounting evidence; causality is unproven.
 
-## 1:40–2:35 · Assess an action commercially
+## 1:30–2:20 · Evaluate a defensible scenario
 
-Open Profit scenario simulator. Show the zero-change baseline. Set staffing
-hours to −5%, order demand to −2% and waste share to 4%. Show net sales, COGS,
-labour, contribution, profit and break-even. Explain that demand is an explicit
-assumption; fewer labour hours do not automatically guarantee unchanged service.
-Show the ±10% demand range and download the assumptions/results.
+Use **Evaluate a profit scenario**. First show zero-change equality. Change hours
+−1% and waste share 4%, leaving demand/prices/wages/discount unchanged. Profit
+estimates about A$4,152, around A$1,160 above baseline for the same duration.
+Explain sold ingredients versus waste and multiplicative hours/wages. Show demand
+sensitivity: lower hours do not silently predict demand or service improvements.
+This is a scenario, separate from statistical sales forecasting.
 
-## 2:35–3:25 · Connect forecasts to staffing
+## 2:20–3:35 · Propose and define measurement
 
-Open Forecasting. Compare the selected model with seasonal naive, including the
-store's MAE/RMSE/WAPE and measured band coverage. Explain rolling validation and
-the final holdout. Open Labour & demand planning. Raise productivity from 6 to 8
-orders per service hour and show the coverage/budget response. State that the
-scheduled line is a historical template and suggestions do not construct a
-compliant employee roster.
+Click **Prepare action from this scenario**. Save evidence, intervention,
+fictional owner, January dates, labour-share success threshold and satisfaction/
+delivery guardrails. Describe the weekday-aligned peer comparison and confounders.
+Save **proposed**; show frozen snapshot/hash, exact assumptions, complete JSON
+export and revision history. Revised assumptions append evidence and require new
+fictional approval. There are no achieved outcomes.
 
-## 3:25–4:10 · Challenge promotional performance
+Show the seeded example or a practice action. Explain that in-progress actions
+can record simulated or user-entered outcomes with provenance and review. The
+full measurement window/review gates completion. Guardrail failure remains visible
+when the commercial threshold passes. Do not claim real approvals or causality.
 
-Open Promotion evaluation. Select a campaign and compare estimated sales,
-incremental contribution, spend and ROI. Point out discounts already reduce net
-sales. Explain control-store contamination, confounding and limited bootstrap
-uncertainty. Show that generator truth is isolated and used to assess expected
-order-uplift error after estimation, not supplied as a model feature.
+## 3:35–4:20 · Defend forecasting and coverage
 
-## 4:10–5:00 · Demonstrate BA delivery and trust
+Open Forecasting. Explain seasonal-naive baseline, three chronological validation
+windows, chain-selected calendar Ridge and separate final holdout. Wollongong's
+MAE is about A$388/day, WAPE 15.6%, measured nominal-80% band coverage 75.0%.
+Store results differ from chain metrics. Hourly planning allocates prior weekday
+order mix and retains support hours; it is decision support, not a compliant roster.
 
-Open Data quality. Show contract checks, optional missing values and whole-order
-quarantine. Explain source IDs and independent SQL reconciliation. Open the
-requirements traceability matrix and validation results. Finish with the BA
-question: “What result would make us retain or stop this pilot?” Suggest labour
-cost and contribution as commercial measures, with satisfaction and stock-outs
-as guardrails.
+## 4:20–5:00 · Show BA evidence and limitations
 
-## Design choices to defend
+Open Data quality and [traceability](requirements_traceability.md). Relate an
+acceptance criterion to an actual test. Explain whole-order quarantine, keys,
+separate grains, SQL and absolute-cent reconciliation. End with [validation](upgrade_validation.md),
+[design choices](design_choices.md) and the proposed controlled pilot. Native
+Tableau still needs manual authoring/verification; the source build bundle is
+available. No live hosting URL is claimed until deployment is verified.
 
-- **Separate grains:** a three-item basket is one transaction; raw fact joins
-  multiply costs. Independently aggregate facts before combining them.
-- **Transparent scenarios:** named drivers, constant-cost assumptions and a
-  ledger identity are easier to challenge than an unexplained optimisation model.
-- **Temporal validation:** random splits leak future structure into planning;
-  forecasts recursively use predictions for future lags.
-- **Appropriate ML:** ridge and boosting challenge a weekly baseline. Selection
-  is based on validation error, not complexity or the most flattering holdout.
-- **Observed relationships:** staffing, survey and loyalty comparisons do not
-  prove causation. A proposed controlled pilot connects evidence to action.
-- **Business acceptance:** stories, criteria and developer validation are
-  provided. Stakeholder interviews, approvals and real-user UAT are not invented.
-- **Honest scope:** the Streamlit app is working; Tableau data/specification are
-  delivered, but no native Tableau workbook or published dashboard is claimed.
+For promotion questions, explain eligible controls, net contribution after spend,
+isolated generator truth and confounding. For loyalty, explain eligible 90-day
+follow-up and anonymous exclusion. These supplementary views are available but
+not required to complete the core five-minute decision story.

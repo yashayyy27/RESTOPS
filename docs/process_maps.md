@@ -36,10 +36,16 @@ flowchart TD
     Reconcile --> Queue[Area Manager: review weekly queue and targets]
     Queue --> Diagnose[Investigate volume, basket, mix, discounts and costs]
     Diagnose --> Estimate[Forecast demand and compare operating scenarios]
-    Estimate --> Pilot[Proposed manager pilot with owner and success measure]
-    Pilot -. Future operational work .-> Measure[Record intervention and measure against control]
-    Measure -. Future operational work .-> Queue
+    Estimate --> Snapshot[Freeze baseline, source hash and scenario assumptions]
+    Snapshot --> Pilot[Save proposed action: fictional owner, dates, success and guardrails]
+    Pilot --> Revision[Append plan revisions; require new fictional approval]
+    Revision --> Status[Record workflow state with explanation]
+    Status --> Measure[Record labelled simulated or user-entered observations and review]
+    Measure --> Review[Assess thresholds and guardrails; retain outcome revision]
+    Review --> Queue
+    Pilot -. Real-world work not conducted .-> Actual[Manager validates feasibility, approvals and controlled intervention]
+    Actual -. Proposed collection process .-> Measure
 ```
 
-The solid path is delivered analysis. Dashed steps are proposed operational work;
+The solid path is implemented analysis and evidence recording. Dashed steps are proposed real-world operational work;
 the repository does not invent approvals, executed interventions or benefits.

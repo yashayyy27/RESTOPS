@@ -7,7 +7,10 @@ import pandas as pd
 
 from src.management import profit_bridge, revenue_bridge
 from src.scenarios import Scenario, simulate, sensitivity
-from src.validation import contract_checks
+from src.validation import contract_checks, revenue_reconciliation
+from src.app_data import load_bundle
+from src.common import ROOT
+from src.management import aggregate
 
 
 def ledger():
@@ -28,6 +31,26 @@ def ledger():
 
 
 class ScenarioTests(unittest.TestCase):
+    def test_zero_change_matches_every_portable_restaurant_month(self):
+        frames, _ = load_bundle(ROOT / "data/demo")
+        for context, rows in frames["store_day"].groupby(["restaurant_id", "month"]):
+            with self.subTest(context=context):
+                observed = aggregate(rows)
+                scenario = simulate(observed)
+                for key in (
+                    "revenue",
+                    "ingredient_cost",
+                    "waste_cost",
+                    "labour_cost",
+                    "commission_cost",
+                    "overhead_cost",
+                    "campaign_cost",
+                    "operating_profit",
+                    "transactions",
+                    "paid_hours",
+                ):
+                    self.assertAlmostEqual(observed[key], scenario[key], delta=0.01)
+
     def test_identity_preserves_entire_cost_ledger(self):
         b, result = ledger(), simulate(ledger())
         for field in b:
@@ -93,8 +116,32 @@ class InvestigationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             profit_bridge(ledger(), dict(ledger(), operating_profit=999))
 
+    def test_large_bridge_does_not_relax_cent_tolerance(self):
+        before = ledger()
+        after = dict(before, revenue=10010000.0, operating_profit=10001900.05)
+        with self.assertRaises(ValueError):
+            profit_bridge(before, after)
+
 
 class ContractTests(unittest.TestCase):
+    def test_reconciliation_rejects_missing_keys_and_scale_dependent_tolerance(self):
+        sql = pd.DataFrame(
+            {
+                "restaurant_id": [1, 2],
+                "month": ["2025-12"] * 2,
+                "revenue": [10000000.0, 10.0],
+            }
+        )
+        python = pd.DataFrame(
+            {
+                "restaurant_id": [1, 3],
+                "month": ["2025-12"] * 2,
+                "revenue": [10000000.05, 10.0],
+            }
+        )
+        self.assertEqual(int(revenue_reconciliation(sql, python).sum()), 3)
+        self.assertEqual(int(revenue_reconciliation(sql, sql.copy()).sum()), 0)
+
     def test_schema_missing_keys_and_relationships_fail(self):
         rows = pd.DataFrame({"id": [1, 1, None], "restaurant_id": [1, 999, 1]})
         checks = contract_checks(rows, "fixture", ["id"], list(rows), set(rows), {1})

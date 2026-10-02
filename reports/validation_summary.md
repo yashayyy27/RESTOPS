@@ -1,20 +1,20 @@
 # Verification record
 
-The extended RESTOPS project passed **39 local tests**, **97 source-validation
-checks**, Python formatting and compilation. All **six notebooks / 42 code cells**
-executed without error outputs. The Streamlit server started and its main workflows
-were verified in the browser; all eight views also ran against the committed demo
-in AppTest. Native Excel weekly revenues reconciled to the decision ledger.
+The recruiter-workflow upgrade passed **66 local full-suite tests**, **51 portable
+checks in a fresh demo environment and clean copy**, and **97 source-validation
+checks**. Formatting, compilation and dependency consistency passed. All nine
+views execute in AppTest; local persistence, immutable revisions, public-session
+isolation and the complete proposed-to-reviewed simulated workflow are covered.
 
-Read the [complete actual validation results](../docs/validation_results.md) for
-commands, scope, UAT mapping, numerical examples and remaining acceptance work.
-The [machine-readable test record](test_results.json) records the final local run.
+Read the [current validation report](../docs/upgrade_validation.md) and
+[machine-readable record](upgrade_validation.json) for actual counts, scope,
+resource observations, fixed defects and manual limitations. The
+[earlier publication record](../docs/validation_results.md) retains independent
+notebook execution, Excel inspection and the earlier 39-test GitHub run.
 
-The project is published at [yashayyy27/RESTOPS](https://github.com/yashayyy27/RESTOPS).
-Its [first GitHub Actions run](https://github.com/yashayyy27/RESTOPS/actions/runs/36970504109)
-passed on a clean Ubuntu runner, including full synthetic-pipeline reproduction
-and all 39 full-suite tests. Local notebook execution and workbook inspection
-remain separate evidence.
+Current upgrade GitHub CI is pending publication. A native Tableau workbook,
+public hosted URL and Docker runtime remain **NOT VERIFIED**. The Tableau data
+bundle itself passed 36 checks over 13 sources.
 
-No real-user UAT, stakeholder approval, native Tableau workbook or achieved
-operational savings is claimed.
+No real-user UAT, stakeholder approval, achieved savings or proven causal benefit
+is claimed. All restaurant data, proposed owners and pilot scenarios are fictional.

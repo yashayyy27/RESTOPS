@@ -30,8 +30,10 @@ APP_TABLES = [
 ]
 
 
-def data_folder(mode="auto"):
+def data_folder(mode="auto", public=False):
     """Explicit RESTOPS_DATA_DIR supports tests and independent demo deployment."""
+    if public:
+        return ROOT / "data/demo"
     override = os.environ.get("RESTOPS_DATA_DIR")
     if override:
         return Path(override)
